@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>hi</h1>
+위도 : <input type="number" id="latitude" name="latitude" step="0.0000000001" required="required">
+경도 : <input type="number" id="longitude" name="longitude" step="0.0000000001" required="required">
+<input type="button" id="getTransport" value="제출">
+<input type="button" id="getRanking" value="제출">
+
+
+<div id="result"></div>
+</body>
+<script >
+	$(function () {
+		$('#getTransport').on('click', function () {
+			let latitude = $('#latitude').val()
+			let longitude = $('#longitude').val()
+			
+			$.ajax({
+				type:'get',
+				url:'/subway?latitude='+latitude+'&longitude='+longitude,
+				
+				success:function(result){
+					console.log(result)
+				}
+			})
+			$.ajax({
+				type:'get',
+				url:'/bus?latitude='+latitude+'&longitude='+longitude,
+				
+				success:function(result){
+					console.log(result)
+				}
+			})
+		})
+		$('#getRanking').on('click', function () {
+			
+			$.ajax({
+				type:'get',
+				url:'/sharelog/bus',
+				
+				success:function(result){
+					console.log(result)
+				}
+			})
+			$.ajax({
+				type:'get',
+				url:'/sharelog/subway',
+				
+				success:function(result){
+					console.log(result)
+				}
+			})
+		})
+		
+	})
+</script>
+</html>
