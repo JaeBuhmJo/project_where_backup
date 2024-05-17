@@ -63,9 +63,13 @@ const cal_middle = () => {
 
         document.getElementsByClassName("modal")[0].style.display = "block";
         //get_tarnsport_info(tempLat, tempLng);
+        modal_map.relayout();
+        modal_map.setCenter(new_marker);
+        
     } else {
         alert("하나 이상의 출발지가 추가되어야 도착지를 설정 할 수 있습니다.");
     }
+    
 };
 
 let find_btn = document.getElementById("find_btn");

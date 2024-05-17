@@ -33,7 +33,11 @@ html, body{
     z-index: 11;
 } */
 
+#modal_map{
+    width: 100%;
+    height: 100%;
 
+}
 
 .map_wrap {
     position:relative;

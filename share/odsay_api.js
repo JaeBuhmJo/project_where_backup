@@ -41,7 +41,7 @@ async function callMapObjApiAJAX(mapObj) {
           new kakao.maps.LatLng(resultJsonData.result.boundary.top, resultJsonData.result.boundary.left),
           new kakao.maps.LatLng(resultJsonData.result.boundary.bottom, resultJsonData.result.boundary.right)
         );
-        modal_map.setBounds(bounds);
+        // modal_map.setBounds(bounds);
       }
     }
   };
