@@ -25,6 +25,9 @@ window.addEventListener('click', (e) => {
 })
 
 function close_modal() {
+    for (const [key, value] of Object.entries(marker_dict)) {
+        value["marker"].setMap(map);
+    }
     document.getElementsByClassName("modal")[0].style.display = "none";
 }
 
@@ -65,6 +68,10 @@ const cal_middle = () => {
         //get_tarnsport_info(tempLat, tempLng);
         modal_map.relayout();
         modal_map.setCenter(new_marker);
+
+        for (const [key, value] of Object.entries(marker_dict)) {
+            value["marker"].setMap(modal_map);
+        }
         
     } else {
         alert("하나 이상의 출발지가 추가되어야 도착지를 설정 할 수 있습니다.");
