@@ -1,130 +1,163 @@
-html, body{
-    width: 100vw;
-    height: 100vh;
-    margin: 0px;
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
 }
 
 .modal {
-    /*팝업 배경*/
-        display: none;
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        background: rgba(0,0,0,0.5);
-        z-index: 9;
-    }
+  /*팝업 배경*/
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
 
-.modal_box{
-    width: 70%;
-    height: 80%;
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    border-radius: 10px;
+.modal_box {
+  width: 70%;
+  height: 80%;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  border-radius: 10px;
+}
+
+.modal_greeting {
+  /*팝업 배경*/
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+}
+
+.modal_greeting_box {
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.modal_greeting_box img {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
 }
 
 /* .modal_btn{
     z-index: 11;
 } */
 
-#modal_map{
-    width: 100%;
-    height: 100%;
-
+#modal_map {
+  width: 100%;
+  height: 100%;
 }
 
 .map_wrap {
-    position:relative;
-    width:100%;
-    height:100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 #menu_wrap {
-    display: flex;
-    overflow-y:auto;
-    flex-direction: column;
-    align-items: center;
-    position:absolute;
-    top:0;right:0;
-    width:450px;
-    min-height: 40%;
-    max-height: 80%;
-    margin:10px 10px 10px 10px;
-    padding:5px;
-    background:rgba(255, 255, 255);
-    z-index: 2;
-    font-size:12px;
-    border-radius: 10px; 
-    border: lightgray 1px solid;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  min-height: 40%;
+  max-height: 80%;
+  margin: 10px 10px 10px 10px;
+  padding: 5px;
+  background: rgba(255, 255, 255);
+  z-index: 2;
+  font-size: 12px;
+  border-radius: 10px;
+  border: lightgray 1px solid;
 }
 
-#menu{
-    display: flex;
-    flex-direction: column;
-    overflow:auto;
-    align-items: center;
-    width: 100%;
-    height: 80%;
-    position: relative;
-    margin-bottom: 80px;
+#menu {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  position: relative;
+  margin-bottom: 80px;
 }
 
-#start_pos_list{
-    width: 100%;
-    height: 80%;
-    margin-bottom: 10px;
-    display: table;
-    overflow-y:auto;
+#start_pos_list {
+  width: 100%;
+  height: 80%;
+  margin-bottom: 10px;
+  display: table;
+  overflow-y: auto;
 }
 
 #menu::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 #menu::-webkit-scrollbar-thumb {
-    background-color: #2f3542;
-    border-radius: 10px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 #menu::-webkit-scrollbar-track {
-    background-color: grey;
-    border-radius: 10px;
-    box-shadow: inset 0px 0px 5px white;
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
 }
 
-.start_pos{
-    margin: 10px; 
-    width: 90%; 
-    line-height: 60px;
-    background-color: #EEEEEE;
-    font-size: large;
-    font-weight: bold;
+.start_pos {
+  margin: 10px;
+  width: 90%;
+  line-height: 60px;
+  background-color: #eeeeee;
+  font-size: large;
+  font-weight: bold;
 }
 
-#menu_buttons{
-    position: absolute;
-    bottom: 20px;
+#menu_buttons {
+  position: absolute;
+  bottom: 20px;
 }
 
-.btn{
-    width: 120px;
-    height: 45px;
-    border-radius: 10px;
-    border: 0px;
-    color: white;
-    font-weight: 700;
+.btn {
+  width: 120px;
+  height: 45px;
+  border-radius: 10px;
+  border: 0px;
+  color: white;
+  font-weight: 700;
 }
 
-#find_btn{
-    background-color:#2BDE73;
+#find_btn {
+  background-color: #2bde73;
 }
-#init_btn{
-    background-color:#CECECE;
+#init_btn {
+  background-color: #cecece;
 }
-
