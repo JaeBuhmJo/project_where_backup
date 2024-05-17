@@ -61,7 +61,26 @@ function drawKakaoPolyLine(data) {
       var polyline = new kakao.maps.Polyline({
         path: lineArray,
         strokeWeight: 10, // 폴리라인 굵기
+        strokeOpacity: 1,
+        strokeStyle: 'solid', // 선의 스타일
       });
+
+      // PolyLine 객체를 생성하여 테두리 그리기
+      let outline = new kakao.maps.Polyline({
+        path: lineArray,
+        strokeWeight: 13, // 선의 두께
+        strokeColor: '#ffffff', // 선의 색깔
+        strokeOpacity: 1, // 선의 불투명도
+        strokeStyle: 'solid', // 선의 스타일
+    });
+
+      let dash = new kakao.maps.Polyline({
+        path: lineArray,
+        strokeWeight: 3, // 선의 두께
+        strokeColor: '#ffffff', // 선의 색깔
+        strokeOpacity: 1, // 선의 불투명도
+        strokeStyle: 'dash', // 선의 스타일
+    });
 
       // 노선 타입에 따른 색상 설정
       var lineType = data.result.lane[i].type;
@@ -88,8 +107,14 @@ function drawKakaoPolyLine(data) {
         //임시
         polyline.setOptions({ strokeColor: "#ff2c97" }); //기본값: 한국 철도 노선색 #cccccc
       }
+
+      outline.setMap(modal_map);
       polyline.setMap(modal_map);
+      dash.setMap(modal_map);
+
+      outlines.push(outline);
       polylines.push(polyline);
+      dashes.push(dash);
     }
   }
 }
