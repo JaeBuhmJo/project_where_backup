@@ -1,5 +1,5 @@
 // ODsay API 키 (계정: donms@naver.com)
-var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
+var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
 
 // ODSay API를 사용하여 대중교통 경로를 검색하는 함수
 async function searchPubTransPathAJAX(sx, sy, ex, ey) {

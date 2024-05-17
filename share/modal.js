@@ -53,27 +53,32 @@ const cal_middle = () => {
         tempLat = tempLat / temp_cnt;
         tempLng = tempLng / temp_cnt;
 
-        
+    
+        let data = get_subway_info(tempLat, tempLng);
+        console.log(data);
+ 
+        tempLat = data.latitude
+        tempLng = data.longitude
+
         const new_marker = new kakao.maps.LatLng(tempLat, tempLng);
         
         marker_for_middle.setPosition(new_marker);
         modal_map.setCenter(new_marker); // 모달 맵에 중점 설정
         marker_for_middle.setMap(modal_map); //*modal_map으로 임시 변경*
 
-        getAddr(tempLat, tempLng);
-
         for (const [key, value] of Object.entries(marker_dict)) {
             searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat);
         }
 
         document.getElementsByClassName("modal")[0].style.display = "block";
-        //get_tarnsport_info(tempLat, tempLng);
+        get_tarnsport_info(tempLat, tempLng);
         modal_map.relayout();
         modal_map.setCenter(new_marker);
 
         for (const [key, value] of Object.entries(marker_dict)) {
             value["marker"].setMap(modal_map);
         }
+
         
     } else {
         alert("하나 이상의 출발지가 추가되어야 도착지를 설정 할 수 있습니다.");
@@ -102,18 +107,14 @@ const clear_poly_line = () => {
 };
 
 
-
-
-
-
-
 function get_tarnsport_info(tempLat, tempLng) {
-    get_bus_info(tempLat, tempLng);
+    // get_bus_info(tempLat, tempLng);
     get_subway_info(tempLat, tempLng);
 }
 
 function get_bus_info(latitude, longitude) {
     $.ajax({
+        async:false,
         type: "get",
         url: "http://127.0.0.1:9000/bus?latitude=" + latitude + "&longitude=" + longitude,
 
@@ -125,13 +126,21 @@ function get_bus_info(latitude, longitude) {
 }
 
 function get_subway_info(latitude, longitude) {
+    console.log(latitude)
+    console.log(longitude)
+    let d;
     $.ajax({
+        async:false,
         type: "get",
         url: "http://127.0.0.1:9000/subway?latitude=" + latitude + "&longitude=" + longitude,
 
         success: function (data) {
             const subway_info = document.getElementById("subway_info");
+            console.log(data.latitude);
+            console.log(data.longitude);
             subway_info.innerHTML = data;
+            d = data
         },
     });
+    return d
 }

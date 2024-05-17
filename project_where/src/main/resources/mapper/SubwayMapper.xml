@@ -6,7 +6,7 @@
 	<select id="getNearestSubway" resultType="subway">
 		SELECT STATION_ID, STATION_NAME, LINE, LATITUDE, LONGITUDE
 		FROM SUBWAY
-		ORDER BY ABS(LATITUDE-#{latitude} + LONGITUDE-#{longitude}) ASC
+		ORDER BY ABS(LATITUDE-#{latitude}) + ABS(LONGITUDE-#{longitude}) ASC
 		LIMIT 1
 	</select>
 
