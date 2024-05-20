@@ -27,9 +27,6 @@ window.addEventListener('click', (e) => {
 })
 
 function close_modal() {
-    for (const [key, value] of Object.entries(marker_dict)) {
-        value["marker"].setMap(map);
-    }
     document.getElementsByClassName("modal")[0].style.display = "none";
 }
 
