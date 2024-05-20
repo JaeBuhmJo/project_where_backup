@@ -4,13 +4,13 @@
 var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
 
 // 인원 수
-var cnt = 0;
+
 var start_x = "";
 var start_y = "";
 
 
 // ODSay API를 사용하여 대중교통 경로를 검색하는 함수
-async function searchPubTransPathAJAX(sx, sy, ex, ey) {
+async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
   var xhr = new XMLHttpRequest();
   var url =
     "https://api.odsay.com/v1/api/searchPubTransPathT?SX=" + sx + "&SY=" + sy + "&EX=" + ex + "&EY=" + ey + "&apiKey=" + encodeURIComponent(apiKey);
@@ -24,13 +24,13 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey) {
           toast_alert("죄송합니다. \n현재 수도권 밖은 서비스 불가입니다.",1000);
         }// 수도권 내 경로 확인
         else{
-          //console.log(xhr.responseText); //API 정보 전체
+          // console.log(xhr.responseText); //API 정보 전체
           //console.log("첫번째 정거장: "+JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startName); //출발지 첫 정거장
           start_x = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startX; // 첫번째 정거장 경도
           start_y = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startY; // 첫번째 정거장 위도
           //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
           //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
-          callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj); // 수도권 내 경로면 경로 제공
+          callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj, start_x,start_y, cnt); // 수도권 내 경로면 경로 제공
         }
       }else{
         console.log("error")
@@ -43,7 +43,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey) {
 // searchPubTransPathAJAX();
 
 // ODSay API를 사용하여 상세 경로 정보를 불러오는 함수
-async function callMapObjApiAJAX(mapObj) {
+async function callMapObjApiAJAX(mapObj, sy, sx, cnt) {
   var xhr = new XMLHttpRequest();
   var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@" + mapObj + "&apiKey=" + encodeURIComponent(apiKey);
   xhr.open("GET", url, true);
@@ -54,8 +54,8 @@ async function callMapObjApiAJAX(mapObj) {
       // 출발지와 도착지에 마커를 표시하고, 경로를 PolyLine으로 그리기
       console.log(2);
       drawKakaoPolyLine(resultJsonData);
-      drawWalkingPolyLine(start[cnt][0], start[cnt][1],start_y,start_x);
-      cnt++;
+      drawWalkingPolyLine(start[cnt][0], start[cnt][1],sx,sy);
+      
       // 경로의 경계를 설정하여 지도의 범위를 조정
       if (resultJsonData.result.boundary) {
         var bounds = new kakao.maps.LatLngBounds(

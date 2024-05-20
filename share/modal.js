@@ -47,8 +47,10 @@ const draw_other_end = (e) =>{
     marker_for_middle.setPosition(new_marker);
 
     for (const [key, value] of Object.entries(marker_dict)) {
-        searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat);
+        searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+        cnt++;
     }
+    cnt = 0;
 }
 let target_subways = document.getElementsByClassName("target_subway")
 for (target_subway of target_subways){
@@ -89,9 +91,10 @@ const cal_middle = () => {
         marker_for_middle.setMap(modal_map); //*modal_map으로 임시 변경*
 
         for (const [key, value] of Object.entries(marker_dict)) {
-            searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat);
+            searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+            cnt++;
         }
-
+        cnt = 0;
         document.getElementsByClassName("modal")[0].style.display = "block";
         modal_map.relayout();
         modal_map.setCenter(new_marker);
@@ -153,8 +156,8 @@ function get_bus_info(latitude, longitude) {
 }
 
 function get_subway_info(latitude, longitude) {
-    console.log(latitude)
-    console.log(longitude)
+    // console.log(latitude)
+    // console.log(longitude)
     let d;
     $.ajax({
         async:false,
