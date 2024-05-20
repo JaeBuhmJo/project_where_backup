@@ -94,7 +94,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
         <button type="button" class="minus_button" value ="${key}">-</button>
         </span>
         
-        <button type="button" class="delete_button" value ="${key}"></button>
+        <button type="button" class="delete_button"></button>
         `;
 
     newDiv.innerHTML += for_html;
