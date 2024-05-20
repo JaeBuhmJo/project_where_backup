@@ -70,17 +70,19 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     return;
   }
 
-  marker_dict[key] = {
-    marker: marker,
-    count: 1,
-  };
+ 
 
   // 선택창(start_pos_list) 등록
   const start_pos_list = document.getElementById("start_pos_list");
   getAddr(latlng.getLat(), latlng.getLng());
   let for_html = "";
   setTimeout(function () {
-    let newDiv = document.createElement("div");
+    if (window.location2 != ""){
+      marker_dict[key] = {
+        marker: marker,
+        count: 1,
+      };
+      let newDiv = document.createElement("div");
     newDiv.setAttribute("class", "start_pos");
     for_html += `
         <span>${window.location2}</span>
@@ -95,15 +97,21 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     newDiv.querySelector(".minus_button").addEventListener("click", minFun);
     newDiv.querySelector(".delete_button").addEventListener("click", delFun);
     start_pos_list.appendChild(newDiv);
+    
+    // 지도에 마커 등록
+    marker.setMap(map);
+    }else{
+      alert("올바른 위치를 클릭해주세요")
+    }
+    
   }, 80);
 
-  // 지도에 마커 등록
-  marker.setMap(map);
 });
 
 // locatation = 자연어 주소
 let location2 = "";
 function getAddr(lat, lng) {
+  window.location2 = "";
   let geocoder = new kakao.maps.services.Geocoder();
 
   let coord = new kakao.maps.LatLng(lat, lng);
