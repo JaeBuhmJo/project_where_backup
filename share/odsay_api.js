@@ -10,12 +10,14 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey) {
   xhr.send();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log(JSON.parse(xhr.responseText));
-      console.log(xhr.responseText);
-      console.log(url);
+      if (JSON.parse(xhr.responseText).error == null){
+        //카카오맵 폴리라인 호출
+        callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
+      }else{
+        console.log("error")
+      }
 
-      //카카오맵 폴리라인 호출
-      callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
+      
     }
   };
 }
@@ -33,7 +35,7 @@ async function callMapObjApiAJAX(mapObj) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var resultJsonData = JSON.parse(xhr.responseText);
       // 출발지와 도착지에 마커를 표시하고, 경로를 PolyLine으로 그리기
-
+      console.log(2);
       drawKakaoPolyLine(resultJsonData);
       // 경로의 경계를 설정하여 지도의 범위를 조정
       if (resultJsonData.result.boundary) {
@@ -49,6 +51,7 @@ async function callMapObjApiAJAX(mapObj) {
 
 // 카카오맵 폴리라인 그리는 함수
 function drawKakaoPolyLine(data) {
+  console.log(data)
   var lineArray;
   for (var i = 0; i < data.result.lane.length; i++) {
     for (var j = 0; j < data.result.lane[i].section.length; j++) {
