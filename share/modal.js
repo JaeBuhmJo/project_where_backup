@@ -22,7 +22,6 @@ var marker_for_middle = new kakao.maps.Marker({
 
 // 모달 바깥 클릭하면 모달 해제
 window.addEventListener('click', (e) => {
-    console.log(e.target.className);
     e.target.className == "modal" ? close_modal() : false
 })
 
@@ -59,7 +58,7 @@ for (target_subway of target_subways){
 // 어디서봄 (중점계산 로직)
 const cal_middle = () => {
     clear_poly_line(); // 초기화
-
+    
     let tempLng = 0;
     let tempLat = 0;
 
@@ -172,3 +171,4 @@ function get_subway_info(latitude, longitude) {
     });
     return d
 }
+

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   width: 100vw;
@@ -7,7 +14,7 @@ body {
 }
 
 body *{
-  font-family : "카페24 써라운드";
+  font-family : "Cafe24Ssurround";
 }
 
 .modal {
@@ -50,7 +57,7 @@ body *{
 
 .modal_greeting_box {
   width: 600px;
-  height: 400px;
+  height: 300px;
   background-color: white;
   position: absolute;
   top: 50%;
@@ -63,9 +70,10 @@ body *{
 }
 
 .modal_greeting_box img {
+  margin: 10px;
+  margin-top: 40px;
   width: 100px;
   height: 100px;
-  margin: 10px;
 }
 
 /* .modal_btn{
@@ -122,6 +130,16 @@ body *{
   overflow-y: auto;
 }
 
+#default_start_guide{
+  display: block;
+  margin: 30px 0px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 2.5ch;
+  padding: 40px;
+  border: 3px dashed lightgray;
+  border-radius: 10px;
+}
+
 #menu::-webkit-scrollbar, #target_subways::-webkit-scrollbar{
   width: 10px;
 }
@@ -167,6 +185,7 @@ body *{
 
 .plus_button, .minus_button{
   border: 0px;
+  background-color: transparent;
 }
 
 .delete_button{

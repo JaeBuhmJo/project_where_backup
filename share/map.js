@@ -22,7 +22,7 @@ function addFun(e) {
   }
 
   if (temp_count >= 16) {
-    alert("최대 16명 까지 추가 할 수 있습니다.");
+    alert_max_cnt();
     return;
   }
   marker_dict[e.target.value]["count"] += 1;
@@ -52,7 +52,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     temp_count += value["count"] * 1;
   }
   if (temp_count >= 16) {
-    alert("최대 16명 까지 추가 할 수 있습니다.");
+    alert_max_cnt();
     return;
   }
 
@@ -102,11 +102,11 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     newDiv.querySelector(".minus_button").addEventListener("click", minFun);
     newDiv.querySelector(".delete_button").addEventListener("click", delFun);
     start_pos_list.appendChild(newDiv);
-    
     // 지도에 마커 등록
     marker.setMap(map);
+    set_pos_guide()
     }else{
-      alert("올바른 위치를 클릭해주세요")
+      alert_wrong_pos();
     }
     
   }, 80);
@@ -132,12 +132,13 @@ function getAddr(lat, lng) {
 // 초기화
 const clear_fun = () => {
   for (const [key, value] of Object.entries(marker_dict)) {
-    value["marker"].setMap(null);
+    value["marker"].setMap(null);  
   }
   // 선택창 초기화
   clear_start_pos_list();
   marker_for_middle.setMap(null);
   marker_dict = {};
+  set_pos_guide()
 };
 
 const clear_start_pos_list = () => {
@@ -148,3 +149,15 @@ const clear_start_pos_list = () => {
 // 초기화 클릭 이벤트
 const clear = document.getElementById("init_btn");
 clear.addEventListener("click", clear_fun);
+
+
+// 출발지 리스트 초기 가이드(지도에서 출발지를 선택해보세요!)
+function set_pos_guide(){
+
+  const start_guide = document.getElementById("default_start_guide");
+  if(Object.keys(marker_dict).length === 0){
+      start_guide.style.display = "block";
+  }else{
+      start_guide.style.display = "none";
+  }
+}
