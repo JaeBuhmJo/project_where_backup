@@ -1,7 +1,7 @@
 // ODsay API 키 (계정: donms@naver.com)
-var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
+// var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
 // var apiKey = "";
-// var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
+var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
 
 // 인원 수
 var cnt = 0;
@@ -21,7 +21,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey) {
       if (JSON.parse(xhr.responseText).error == null){
         //카카오맵 폴리라인 호출
         if (JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj == undefined){
-          alert("죄송합니다. 현재 수도권 밖은 서비스 불가입니다.");
+          toast_alert("죄송합니다. \n현재 수도권 밖은 서비스 불가입니다.",1000);
         }// 수도권 내 경로 확인
         else{
           //console.log(xhr.responseText); //API 정보 전체

@@ -25,7 +25,7 @@ function addFun(e) {
   }
 
   if (temp_count >= 16) {
-    alert_max_cnt();
+    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 1000);
     return;
   }
   marker_dict[e.target.value]["count"] += 1;
@@ -46,6 +46,7 @@ function delFun(e) {
   e.target.parentElement.remove();
   marker_dict[key_for_del]["marker"].setMap(null);
   delete marker_dict[key_for_del];
+  set_pos_guide();
 }
 
 // 지도 클릭 시 마커 생성
@@ -55,7 +56,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     temp_count += value["count"] * 1;
   }
   if (temp_count >= 16) {
-    alert_max_cnt();
+    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 1000);
     return;
   }
 
@@ -100,7 +101,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
         <button type="button" class="minus_button" value ="${key}">-</button>
         </span>
         
-        <button type="button" class="delete_button"></button>
+        <button type="button" class="delete_button" value ="${key}"></button>
         `;
 
     newDiv.innerHTML += for_html;
@@ -112,7 +113,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     marker.setMap(map);
     set_pos_guide()
     }else{
-      alert_wrong_pos();
+      toast_alert("올바른 위치를 클릭해주세요.", 1000);
     }
     
   }, 80);

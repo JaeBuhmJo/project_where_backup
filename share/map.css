@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'SOYOMapleBoldTTF';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html,
 body {
   width: 100vw;
@@ -14,7 +21,7 @@ body {
 }
 
 body *{
-  font-family : "Cafe24Ssurround";
+  font-family : "SOYOMapleBoldTTF";
 }
 
 .modal {
@@ -75,10 +82,6 @@ body *{
   width: 100px;
   height: 100px;
 }
-
-/* .modal_btn{
-    z-index: 11;
-} */
 
 #modal_map {
   width: 100%;
