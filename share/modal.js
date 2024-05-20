@@ -1,7 +1,8 @@
-// 폴리라인, 아웃라인(테두리), 대쉬(중간선) 배열
+// 폴리라인, 아웃라인(테두리), 대쉬(중간선), 도보라인 배열
 let polylines = [];
 let outlines = [];
 let dashes = [];
+let walkingPolyLines = [];
 
 // 지도를 생성합니다
 var modal_mapContainer = document.getElementById("modal_map"), // 지도를 표시할 div
@@ -121,10 +122,15 @@ const clear_poly_line = () => {
     for (const dd of dashes) {
         dd.setMap(null);
     }
+    for (const ww of walkingPolyLines) {
+        ww.setMap(null);
+    }
 
     polylines = [];
     outlines = [];
     dashes = [];
+    walkingPolyLines = [];
+    cnt = 0;
 };
 
 

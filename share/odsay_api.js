@@ -3,6 +3,12 @@ var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
 // var apiKey = "";
 // var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
 
+// 인원 수
+var cnt = 0;
+var start_x = "";
+var start_y = "";
+
+
 // ODSay API를 사용하여 대중교통 경로를 검색하는 함수
 async function searchPubTransPathAJAX(sx, sy, ex, ey) {
   var xhr = new XMLHttpRequest();
@@ -14,12 +20,21 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       if (JSON.parse(xhr.responseText).error == null){
         //카카오맵 폴리라인 호출
-        callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
+        if (JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj == undefined){
+          alert("죄송합니다. 현재 수도권 밖은 서비스 불가입니다.");
+        }// 수도권 내 경로 확인
+        else{
+          //console.log(xhr.responseText); //API 정보 전체
+          //console.log("첫번째 정거장: "+JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startName); //출발지 첫 정거장
+          start_x = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startX; // 첫번째 정거장 경도
+          start_y = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startY; // 첫번째 정거장 위도
+          //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
+          //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
+          callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj); // 수도권 내 경로면 경로 제공
+        }
       }else{
         console.log("error")
       }
-
-      
     }
   };
 }
@@ -39,6 +54,8 @@ async function callMapObjApiAJAX(mapObj) {
       // 출발지와 도착지에 마커를 표시하고, 경로를 PolyLine으로 그리기
       console.log(2);
       drawKakaoPolyLine(resultJsonData);
+      drawWalkingPolyLine(start[cnt][0], start[cnt][1],start_y,start_x);
+      cnt++;
       // 경로의 경계를 설정하여 지도의 범위를 조정
       if (resultJsonData.result.boundary) {
         var bounds = new kakao.maps.LatLngBounds(
@@ -122,4 +139,23 @@ function drawKakaoPolyLine(data) {
       dashes.push(dash);
     }
   }
+}
+
+// 도보 폴리라인 그리기
+function drawWalkingPolyLine(a,b,c,d) {
+  var walkingLinePath = [
+    new kakao.maps.LatLng(a,b),
+    new kakao.maps.LatLng(c,d)
+  ];
+  
+  var walkingPolyLine = new kakao.maps.Polyline({
+    path: walkingLinePath, 
+    strokeWeight: 10,
+    strokeColor: '#ff2c97',
+    strokeOpacity: 0.7, 
+    strokeStyle: 'dashed'
+  });
+
+  walkingPolyLine.setMap(modal_map);
+  walkingPolyLines.push(walkingPolyLine);
 }

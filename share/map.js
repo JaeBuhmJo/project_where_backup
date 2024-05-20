@@ -2,6 +2,9 @@
 let marker_dict = {};
 const addr = "";
 
+//도보 폴리라인을 위한 출발지 위경도 배열입니다.
+var start = [];
+
 // 지도를 생성합니다
 var mapContainer = document.getElementById("map"),
   mapOption = {
@@ -64,6 +67,9 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
 
   // 마커 위치를 클릭한 위치로 옮깁니다
   marker.setPosition(latlng);
+  
+  // 도보 출발지 배열에 마커 위치를 추가합니다.
+  start.push([latlng.getLat(),latlng.getLng()]);
 
   const key = latlng.getLat() + "," + latlng.getLng();
   if (key in marker_dict) {
