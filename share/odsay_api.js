@@ -30,7 +30,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
           start_y = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startY; // 첫번째 정거장 위도
           //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
           //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
-          callMapObjApiAJAX(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj, start_x,start_y, cnt); // 수도권 내 경로면 경로 제공
+          callMapObjApiAJAX(sx,sy,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj); // 수도권 내 경로면 경로 제공
         }
       }else{
         console.log("error")
@@ -43,7 +43,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
 // searchPubTransPathAJAX();
 
 // ODSay API를 사용하여 상세 경로 정보를 불러오는 함수
-async function callMapObjApiAJAX(mapObj, sy, sx, cnt) {
+async function callMapObjApiAJAX(sx,sy,mapObj) {
   var xhr = new XMLHttpRequest();
   var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@" + mapObj + "&apiKey=" + encodeURIComponent(apiKey);
   xhr.open("GET", url, true);
@@ -52,10 +52,12 @@ async function callMapObjApiAJAX(mapObj, sy, sx, cnt) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var resultJsonData = JSON.parse(xhr.responseText);
       // 출발지와 도착지에 마커를 표시하고, 경로를 PolyLine으로 그리기
-      console.log(2);
-      drawKakaoPolyLine(resultJsonData);
-      drawWalkingPolyLine(start[cnt][0], start[cnt][1],sx,sy);
       
+      drawKakaoPolyLine(resultJsonData);
+      drawWalkingPolyLine(resultJsonData.result.lane[0].section[0].graphPos[0].y,resultJsonData.result.lane[0].section[0].graphPos[0].x,sy,sx)
+    
+      
+      cnt++;
       // 경로의 경계를 설정하여 지도의 범위를 조정
       if (resultJsonData.result.boundary) {
         var bounds = new kakao.maps.LatLngBounds(
