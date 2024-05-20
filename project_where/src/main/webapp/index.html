@@ -23,7 +23,7 @@
 			
 			$.ajax({
 				type:'get',
-				url:'/subway?latitude='+latitude+'&longitude='+longitude,
+				url:'/subway/3?latitude='+latitude+'&longitude='+longitude,
 				
 				success:function(result){
 					console.log(result)
@@ -31,7 +31,7 @@
 			})
 			$.ajax({
 				type:'get',
-				url:'/bus?latitude='+latitude+'&longitude='+longitude,
+				url:'/bus/3?latitude='+latitude+'&longitude='+longitude,
 				
 				success:function(result){
 					console.log(result)

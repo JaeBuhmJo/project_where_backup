@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.service.spring.dao.BusDAO;
 import com.service.spring.domain.BusNode;
 import com.service.spring.domain.BusRoute;
-import com.service.spring.domain.Coordinate;
+import com.service.spring.domain.Criteria;
 
 @Repository
 public class BusDAOImpl implements BusDAO{
@@ -21,13 +21,19 @@ public class BusDAOImpl implements BusDAO{
 	private SqlSession sqlSession; 
 
 	@Override
-	public BusNode getNearestBusNode(Coordinate coordinate) {
-		return sqlSession.selectOne(NS+"getNearestBusNode", coordinate);
+	public BusNode getNearestBusNode(Criteria criteria) {
+		return sqlSession.selectOne(NS+"getNearestBusNode", criteria);
 	}
 
 	@Override
 	public List<BusRoute> getBusRoutes(int nodeId) {
 		return sqlSession.selectList(NS+"getBusRoutes", nodeId);
+	}
+
+	@Override
+	public List<BusNode> getNearestBusNodes(Criteria criteria) {
+		
+		return sqlSession.selectList(NS+"getNearestBusNodes", criteria);
 	}
 
 }

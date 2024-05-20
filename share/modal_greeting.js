@@ -1,14 +1,20 @@
-// 모달 바깥 클릭하면 환영 모달 해제
-window.addEventListener("click", (e) => {
-  e.target.className == "modal_greeting" ? close_modal_greeting() : false;
-});
-
 function show_modal_greeting() {
   document.getElementsByClassName("modal_greeting")[0].style.display = "inline-block";
 }
 function close_modal_greeting() {
   document.getElementsByClassName("modal_greeting")[0].style.display = "none";
 }
+
+// 로고 클릭하면 모달 띄워주기
+document.getElementById("logo").addEventListener("click", (e) => {
+  e.preventDefault();
+  show_modal_greeting();
+});
+
+// 모달 바깥 클릭하면 환영 모달 해제
+window.addEventListener("click", (e) => {
+  e.target.className == "modal_greeting" ? close_modal_greeting() : false;
+});
 
 // 쿠키 확인
 const visitedCookie = getCookie("where_visited");
