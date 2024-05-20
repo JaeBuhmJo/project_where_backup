@@ -145,6 +145,38 @@ body *{
   font-family : "카페24 써라운드";
   font-size: large;
   font-weight: bold;
+  padding-left: 50px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.pnum_btn_group{
+  position: absolute;
+  right: 10px;
+}
+
+.pos_img{
+  position: absolute;
+  top:14px;
+  left:14px;
+  width: 25px;
+  height: 30px;
+  background: url('./img/pin_blue.png');
+  background-size: 100%;
+}
+
+.plus_button, .minus_button{
+  border: 0px;
+}
+
+.delete_button{
+  position: absolute;
+  top: -11px;
+  right: -11px;
+  height: 28px;
+  width: 28px;
+  border: 0px;
+  background: url('./img/close_btn.png');
 }
 
 #menu_buttons {

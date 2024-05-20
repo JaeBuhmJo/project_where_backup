@@ -85,11 +85,16 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       let newDiv = document.createElement("div");
     newDiv.setAttribute("class", "start_pos");
     for_html += `
+        <span class="pos_img"></span>   
         <span>${window.location2}</span>
+
+        <span class="pnum_btn_group">
         <button type="button" class="plus_button" value ="${key}">+</button>
-        <button type="button" class="minus_button" value ="${key}">-</button>
-        <button type="button" class="delete_button" value ="${key}">Delete</button>
         <span class = "count">${marker_dict[key]["count"]}</span>
+        <button type="button" class="minus_button" value ="${key}">-</button>
+        </span>
+        
+        <button type="button" class="delete_button" value ="${key}"></button>
         `;
 
     newDiv.innerHTML += for_html;
