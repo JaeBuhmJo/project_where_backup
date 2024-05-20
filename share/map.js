@@ -148,7 +148,9 @@ const clear_fun = () => {
   clear_start_pos_list();
   marker_for_middle.setMap(null);
   marker_dict = {};
-  set_pos_guide()
+  set_pos_guide();
+  start = [];
+        
 };
 
 const clear_start_pos_list = () => {

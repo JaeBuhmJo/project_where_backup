@@ -45,7 +45,9 @@ const draw_other_end = (e) =>{
 
     const new_marker = new kakao.maps.LatLng(tempLat, tempLng);
     marker_for_middle.setPosition(new_marker);
-
+    
+    
+    cnt = 0;
     for (const [key, value] of Object.entries(marker_dict)) {
         searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
         cnt++;
@@ -90,11 +92,13 @@ const cal_middle = () => {
         modal_map.setCenter(new_marker); // 모달 맵에 중점 설정
         marker_for_middle.setMap(modal_map); //*modal_map으로 임시 변경*
 
+        cnt = 0;
         for (const [key, value] of Object.entries(marker_dict)) {
             searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
             cnt++;
         }
         cnt = 0;
+        
         document.getElementsByClassName("modal")[0].style.display = "block";
         modal_map.relayout();
         modal_map.setCenter(new_marker);
