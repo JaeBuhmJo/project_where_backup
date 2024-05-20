@@ -3,6 +3,11 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0px;
+  
+}
+
+body *{
+  font-family : "카페24 써라운드";
 }
 
 .modal {
@@ -44,8 +49,8 @@ body {
 }
 
 .modal_greeting_box {
-  width: 250px;
-  height: 250px;
+  width: 600px;
+  height: 400px;
   background-color: white;
   position: absolute;
   top: 50%;
@@ -117,16 +122,16 @@ body {
   overflow-y: auto;
 }
 
-#menu::-webkit-scrollbar {
+#menu::-webkit-scrollbar, #target_subways::-webkit-scrollbar{
   width: 10px;
 }
-#menu::-webkit-scrollbar-thumb {
+#menu::-webkit-scrollbar-thumb, #target_subways::-webkit-scrollbar-thumb{
   background-color: #2f3542;
   border-radius: 10px;
   background-clip: padding-box;
   border: 2px solid transparent;
 }
-#menu::-webkit-scrollbar-track {
+#menu::-webkit-scrollbar-track, #target_subways::-webkit-scrollbar-track{
   background-color: grey;
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
@@ -137,6 +142,7 @@ body {
   width: 90%;
   line-height: 60px;
   background-color: #eeeeee;
+  font-family : "카페24 써라운드";
   font-size: large;
   font-weight: bold;
 }
@@ -156,8 +162,77 @@ body {
 }
 
 #find_btn {
+  color: white;
   background-color: #2bde73;
 }
 #init_btn {
+  color: white;
   background-color: #cecece;
+}
+
+#transport_list{
+    position: absolute;
+    background-color: rgb(255,255,255,0.8);
+    border-radius: 10px;
+    z-index: 12;
+    width: 20%;
+    height: 75%;
+    top: 50%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+  padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+#transport_list h3{
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+#target_subways{
+    overflow-y: auto;
+    width: 100%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+.target_subway{
+  width: 90%;
+  flex: 0 0 80px;
+  border-radius: 10px;
+  border:0px;
+  background-color: lightgray;
+  margin: 0 auto;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.target_subway:hover{
+    box-shadow: 0 0 0 3px #2bde73;
+}
+
+#share_btn{
+    width: 90%;
+    height: 60px;
+    background-color: #2bde73;
+    text-align: center;
+    border-radius: 10px;
+    border: 0px;
+    position: inherit;
+    bottom: 10px;
+    color: white;
+}
+
+#share_btn:hover{
+  box-shadow: 0 0 0 2px #081245;
+}
+
+#subway_info{
+  display: none;
 }
