@@ -28,6 +28,31 @@ window.addEventListener('click', (e) => {
 
 function close_modal() {
     document.getElementsByClassName("modal")[0].style.display = "none";
+
+    for (const [key, value] of Object.entries(marker_dict)) {
+        value["marker"].setMap(map);
+    }
+}
+
+const draw_other_end = (e) =>{
+    let target = e.target
+    if (e.target.tagName == "DIV"){
+        target = e.target.parentNode
+    }
+    let tempLat = target.children[0].getAttribute("data-lat")
+    let tempLng = target.children[0].getAttribute("data-lng")
+    clear_poly_line(); // 초기화
+
+    const new_marker = new kakao.maps.LatLng(tempLat, tempLng);
+    marker_for_middle.setPosition(new_marker);
+
+    for (const [key, value] of Object.entries(marker_dict)) {
+        searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat);
+    }
+}
+let target_subways = document.getElementsByClassName("target_subway")
+for (target_subway of target_subways){
+    target_subway.addEventListener('click',draw_other_end)
 }
 
 
@@ -68,13 +93,13 @@ const cal_middle = () => {
         }
 
         document.getElementsByClassName("modal")[0].style.display = "block";
-        get_tarnsport_info(tempLat, tempLng);
         modal_map.relayout();
         modal_map.setCenter(new_marker);
 
         for (const [key, value] of Object.entries(marker_dict)) {
             value["marker"].setMap(modal_map);
         }
+
 
         
     } else {
@@ -129,14 +154,20 @@ function get_subway_info(latitude, longitude) {
     $.ajax({
         async:false,
         type: "get",
-        url: "http://127.0.0.1:9000/subway?latitude=" + latitude + "&longitude=" + longitude,
+        url: "http://127.0.0.1:9000/subway/3?latitude=" + latitude + "&longitude=" + longitude,
 
         success: function (data) {
             const subway_info = document.getElementById("subway_info");
-            console.log(data.latitude);
-            console.log(data.longitude);
-            subway_info.innerHTML = data;
-            d = data
+            let target_subways = document.getElementsByClassName("target_subway")
+
+            for (let i = 0; i <3; i++){
+                console.log("================================")
+                console.log(data[i].stationName)
+                target_subways[i].innerHTML = `<div data-lat=${data[i].latitude} data-lng=${data[i].longitude}>${data[i].stationName}</div>`
+            }
+
+            subway_info.innerHTML = data[0];
+            d = data[0]
         },
     });
     return d

@@ -11,10 +11,18 @@
 	</select>
 	
 	<select id="getNearestSubways" resultType="subway">
-		SELECT STATION_ID, STATION_NAME, LINE, LATITUDE, LONGITUDE
-		FROM SUBWAY
-		ORDER BY ABS(LATITUDE-#{latitude}) + ABS(LONGITUDE-#{longitude}) ASC
-		LIMIT #{amount}
+		SELECT station_name, LATITUDE, LONGITUDE
+		FROM (
+		    SELECT 
+		        station_name,
+		        LATITUDE,
+		        LONGITUDE,
+		        ROW_NUMBER() OVER (PARTITION BY station_name ORDER BY ABS(LATITUDE-#{latitude}) + ABS(LONGITUDE-#{longitude})) as rn
+		    FROM SUBWAY
+		) SUBWAY
+		WHERE rn = 1
+		ORDER BY ABS(LATITUDE-#{latitude}) + ABS(LONGITUDE-#{longitude})
+		LIMIT 3
 	</select>
 
 </mapper>
