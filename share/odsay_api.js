@@ -142,12 +142,31 @@ function drawKakaoPolyLine(data,cnt) {
       polyline.setMap(modal_map);
       dash.setMap(modal_map);
 
+      animateOpacity(outline, polyline, dash);
+
       outlines.push(outline);
       polylines.push(polyline);
       dashes.push(dash);
     }
   }
 }
+
+function animateOpacity(outline, polyline, dash) {
+  for (var op = 0; op <= 1; op += 0.01) {
+    (function(op) {
+      setTimeout(function() {
+        outline.setOptions({ strokeOpacity: op });
+        polyline.setOptions({ strokeOpacity: op });
+        dash.setOptions({ strokeOpacity: op });
+      }, op * 500); // 각 반복마다 100ms의 지연 시간 추가
+    })(op);
+  }
+}
+
+// 사용 예시
+
+
+
 
 // 도보 폴리라인 그리기
 function drawWalkingPolyLine(a,b,c,d,cnt) {

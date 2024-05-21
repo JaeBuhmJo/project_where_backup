@@ -6,8 +6,6 @@ function toast_alert(str, time){
     timer: time,
     timerProgressBar: false,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
       toast.querySelector('.swal2-title').style.textAlign = 'center';
     }
   })

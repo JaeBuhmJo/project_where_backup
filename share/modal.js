@@ -35,11 +35,10 @@ function close_modal() {
 
 // 로딩 관련 함수
 function LoadingWithMask(gif) {
-    console.log("reload");
-    //화면의 높이와 너비를 구합니다.
-    var maskHeight = $(document).height();
-    var maskWidth = window.document.body.clientWidth;
-    //화면에 출력할 마스크를 설정해줍니다.
+    //화면의 높이와 너비를 구합니다.    
+    var maskHeight = $(document).height()
+    var maskWidth = window.document.body.clientWidth; 
+    //화면에 출력할 마스크를 설정해줍니다.    
     var mask = "<div id='mask' style='position:absolute; z-index:9000; background-color:#000000; display:none; left:0; top:0;'></div>";
     var loadingImg = "";
     loadingImg += "<img src='" + gif + "' id='loadingImg' style='position: absolute; z-index:9001; width:100px; height:100px;'/>";
@@ -55,17 +54,20 @@ function LoadingWithMask(gif) {
 }
 
 function closeLoadingWithMask() {
-    console.log("remove");
-    $("#mask, #loadingImg").remove();
+    $('#mask, #loadingImg').remove();
+}
+
+function call_loading(img_path){
+    LoadingWithMask(img_path);
+    var loading_time = 500;
+    loading_time += Object.keys(marker_dict).length*450;
+    setTimeout(closeLoadingWithMask, loading_time);
+    toast_alert("\n\n\n\n\n경로를 탐색중이에요!", loading_time);
 }
 
 const draw_other_end = (e) => {
     // 경로 탐색 로딩창
-    LoadingWithMask("./img/reload2.gif");
-    var loading_time = 300;
-    loading_time += Object.keys(marker_dict).length * 250;
-    setTimeout(closeLoadingWithMask, loading_time);
-    toast_alert("\n\n\n\n\n경로를 탐색중이에요!", loading_time);
+    call_loading('./img/reload2.gif');
 
     for (target_subway of target_subways) {
         target_subway.disabled = false;
