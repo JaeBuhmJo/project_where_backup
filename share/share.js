@@ -10,8 +10,9 @@ document.getElementById("share_btn").addEventListener("click", (e) => {
   }
   url = url.substring(0, url.length - 1);
 
-  let shortenedUrl = saveShareLog(url);
-  setUrltoClipboard(shortenedUrl);
+  saveShareLog(url);
+
+
   // db에 공유 로그 기록하기
 });
 
@@ -23,7 +24,7 @@ function setUrltoClipboard(shortenedUrl) {
       console.log("클립보드에 공유링크가 복사되었습니다");
     })
     .catch((err) => {
-      console.log("클립보드 복사 실패");
+      console.log("클립보드 복사 실패" + err);
     });
 }
 
@@ -43,7 +44,10 @@ function saveShareLog(url) {
         console.log("로그 기록 실패");
       } else {
         console.log("로그 기록 성공");
-        return response
+        console.log("uuid" + response)
+        let shortenedUrl ="http://127.0.0.1:5500/index.html?uuid="+ response;
+        console.log("단축url : "+shortenedUrl)
+        setUrltoClipboard(shortenedUrl);
       }
     },
   });
