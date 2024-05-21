@@ -84,12 +84,8 @@ const draw_other_end = (e) => {
 
     const new_marker = new kakao.maps.LatLng(tempLat, tempLng);
     marker_for_middle.setPosition(new_marker);
-<<<<<<< Updated upstream
-
-=======
     modal_map.setCenter(new_marker);
     
->>>>>>> Stashed changes
     let count_for_time = 0;
     cnt = 0;
     for (let [key, value] of Object.entries(marker_dict)) {
