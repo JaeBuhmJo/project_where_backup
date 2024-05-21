@@ -29,3 +29,7 @@ div#ranking-subway {
   background-color: white;
   color: black;
 }
+
+#show-ranking {
+  width: 250px;
+}

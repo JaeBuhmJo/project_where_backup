@@ -18,10 +18,10 @@
 		ORDER BY COUNT DESC
 		LIMIT 5
 	</select>
-
+	
 	<insert id="insertShareLog" parameterType="shareLog">
-		INSERT INTO SHARELOG (REGDATE, NODE_ID, NODE_NAME, STATION_ID, STATION_NAME)
-		VALUES(CURDATE(), #{nodeId}, #{nodeName}, #{stationId}, #{stationName})
+		INSERT INTO SHARELOG (REGDATE, STATION_ID, STATION_NAME)
+		VALUES(CURDATE(), #{stationId}, #{stationName})
 	</insert>
 
 </mapper>
