@@ -1,7 +1,5 @@
-// ODsay API 키 (계정: donms@naver.com)
-// var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
-// var apiKey = "";
-var apiKey = "N/RkyUcODFiOYnk4dov3wtA6JYeE52si9VB9r/EG9VI";
+// ODsay API 키
+var apiKey = config.ODSAY_API_KEY3;
 
 // 인원 수
 
@@ -172,7 +170,7 @@ function drawWalkingPolyLine(a,b,c,d,cnt) {
 
 // 인원별 색상
 palette = ["#FFD700","#1E90FF","#00A84D","#F97600",
-            "#8652A1","#000080","#77C4A3","#0090D2",
-            "#FF00FF","##C7197D","#F5A200","#008000",
-            "#98FB98","#808000","#F40404","#DC143C",
+          "#FE718D","#8652A1","#000080","#F40404",
+          "#0090D2","#FF00FF","#F5A200","#008000",
+          "#98FB98","#808000","#77C4A3","#DC143C",
 ]
