@@ -30,7 +30,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
           start_y = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startY; // 첫번째 정거장 위도
           //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
           //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
-          callMapObjApiAJAX(sx,sy,ex,ey,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj); // 수도권 내 경로면 경로 제공
+          callMapObjApiAJAX(sx,sy,ex,ey,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj,cnt); // 수도권 내 경로면 경로 제공
         }
       }else{
         console.log("error")
@@ -43,7 +43,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
 // searchPubTransPathAJAX();
 
 // ODSay API를 사용하여 상세 경로 정보를 불러오는 함수
-async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj) {
+async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj,cnt) {
   var xhr = new XMLHttpRequest();
   var url = "https://api.odsay.com/v1/api/loadLane?mapObject=0:0@" + mapObj + "&apiKey=" + encodeURIComponent(apiKey);
   xhr.open("GET", url, true);
@@ -53,15 +53,16 @@ async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj) {
       var resultJsonData = JSON.parse(xhr.responseText);
       // 출발지와 도착지에 마커를 표시하고, 경로를 PolyLine으로 그리기
       
-      drawKakaoPolyLine(resultJsonData);
-      drawWalkingPolyLine(resultJsonData.result.lane[0].section[0].graphPos[0].y,resultJsonData.result.lane[0].section[0].graphPos[0].x,sy,sx)
+      drawKakaoPolyLine(resultJsonData,cnt);
+      
+      drawWalkingPolyLine(resultJsonData.result.lane[0].section[0].graphPos[0].y,resultJsonData.result.lane[0].section[0].graphPos[0].x,sy,sx,cnt)
       let b = resultJsonData.result.lane.length
       let a = resultJsonData.result.lane[b-1].section[0].graphPos.length
 
       console.log(resultJsonData.result.lane[b-1].section[0].graphPos[a-1])
-      drawWalkingPolyLine(resultJsonData.result.lane[b-1].section[0].graphPos[a-1].y,resultJsonData.result.lane[b-1].section[0].graphPos[a-1].x,ey,ex)
+      drawWalkingPolyLine(resultJsonData.result.lane[b-1].section[0].graphPos[a-1].y,resultJsonData.result.lane[b-1].section[0].graphPos[a-1].x,ey,ex,cnt)
       
-      cnt++;
+      //cnt++;
       // 경로의 경계를 설정하여 지도의 범위를 조정
       if (resultJsonData.result.boundary) {
         var bounds = new kakao.maps.LatLngBounds(
@@ -75,7 +76,7 @@ async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj) {
 }
 
 // 카카오맵 폴리라인 그리는 함수
-function drawKakaoPolyLine(data) {
+function drawKakaoPolyLine(data,cnt) {
   console.log(data)
   var lineArray;
   for (var i = 0; i < data.result.lane.length; i++) {
@@ -110,31 +111,34 @@ function drawKakaoPolyLine(data) {
         strokeStyle: 'dash', // 선의 스타일
     });
 
-      // 노선 타입에 따른 색상 설정
-      var lineType = data.result.lane[i].type;
-      //alert(lineType+"호선 입니다!!!!");
-      if (lineType == 1) {
-        polyline.setOptions({ strokeColor: "#0052A4" }); //1호선: #0052A4
-      } else if (lineType == 2) {
-        polyline.setOptions({ strokeColor: "#00A84D" }); //2호선: #00A84D
-      } else if (lineType == 3) {
-        polyline.setOptions({ strokeColor: "#EF7C1C" }); //3호선: #EF7C1C
-      } else if (lineType == 4) {
-        polyline.setOptions({ strokeColor: "#00A5DE" }); //4호선: #00A5DE
-      } else if (lineType == 5) {
-        polyline.setOptions({ strokeColor: "#996CAC" }); //5호선: #996CAC
-      } else if (lineType == 6) {
-        polyline.setOptions({ strokeColor: "#CD7C2F" }); //6호선: #CD7C2F
-      } else if (lineType == 7) {
-        polyline.setOptions({ strokeColor: "#747F00" }); //7호선: #747F00
-      } else if (lineType == 8) {
-        polyline.setOptions({ strokeColor: "#E6186C" }); //8호선: #E6186C
-      } else if (lineType == 9) {
-        polyline.setOptions({ strokeColor: "#BDB092" }); //9호선: #BDB092
-      } else {
-        //임시
-        polyline.setOptions({ strokeColor: "#ff2c97" }); //기본값: 한국 철도 노선색 #cccccc
-      }
+      // // 노선 타입에 따른 색상 설정
+      // var lineType = data.result.lane[i].type;
+      // //alert(lineType+"호선 입니다!!!!");
+      // if (lineType == 1) {
+      //   polyline.setOptions({ strokeColor: "#0052A4" }); //1호선: #0052A4
+      // } else if (lineType == 2) {
+      //   polyline.setOptions({ strokeColor: "#00A84D" }); //2호선: #00A84D
+      // } else if (lineType == 3) {
+      //   polyline.setOptions({ strokeColor: "#EF7C1C" }); //3호선: #EF7C1C
+      // } else if (lineType == 4) {
+      //   polyline.setOptions({ strokeColor: "#00A5DE" }); //4호선: #00A5DE
+      // } else if (lineType == 5) {
+      //   polyline.setOptions({ strokeColor: "#996CAC" }); //5호선: #996CAC
+      // } else if (lineType == 6) {
+      //   polyline.setOptions({ strokeColor: "#CD7C2F" }); //6호선: #CD7C2F
+      // } else if (lineType == 7) {
+      //   polyline.setOptions({ strokeColor: "#747F00" }); //7호선: #747F00
+      // } else if (lineType == 8) {
+      //   polyline.setOptions({ strokeColor: "#E6186C" }); //8호선: #E6186C
+      // } else if (lineType == 9) {
+      //   polyline.setOptions({ strokeColor: "#BDB092" }); //9호선: #BDB092
+      // } else {
+      //   //임시
+      //   polyline.setOptions({ strokeColor: "#ff2c97" }); //기본값: 한국 철도 노선색 #cccccc
+      // }
+
+      // 인원 수 별 노선 색상 설정
+      polyline.setOptions({ strokeColor: palette[cnt] });
 
       outline.setMap(modal_map);
       polyline.setMap(modal_map);
@@ -148,7 +152,7 @@ function drawKakaoPolyLine(data) {
 }
 
 // 도보 폴리라인 그리기
-function drawWalkingPolyLine(a,b,c,d) {
+function drawWalkingPolyLine(a,b,c,d,cnt) {
   var walkingLinePath = [
     new kakao.maps.LatLng(a,b),
     new kakao.maps.LatLng(c,d)
@@ -156,12 +160,19 @@ function drawWalkingPolyLine(a,b,c,d) {
   
   var walkingPolyLine = new kakao.maps.Polyline({
     path: walkingLinePath, 
-    strokeWeight: 10,
-    strokeColor: '#ff2c97',
-    strokeOpacity: 0.7, 
+    strokeWeight: 9,
+    strokeColor: palette[cnt],
+    strokeOpacity: 0.8, 
     strokeStyle: 'dashed'
   });
 
   walkingPolyLine.setMap(modal_map);
   walkingPolyLines.push(walkingPolyLine);
 }
+
+// 인원별 색상
+palette = ["#FFD700","#1E90FF","#00A84D","#F97600",
+            "#8652A1","#000080","#77C4A3","#0090D2",
+            "#FF00FF","##C7197D","#F5A200","#008000",
+            "#98FB98","#808000","#F40404","#DC143C",
+]
