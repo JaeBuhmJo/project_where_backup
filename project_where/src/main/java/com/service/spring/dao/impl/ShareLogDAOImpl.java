@@ -34,7 +34,7 @@ public class ShareLogDAOImpl implements ShareLogDAO {
 
 	@Override
 	public String getShareLog(String uuid) {
-		return sqlSession.selectOne(NS+"getShareLog");
+		return sqlSession.selectOne(NS+"getShareLog", uuid);
 	}
 
 }

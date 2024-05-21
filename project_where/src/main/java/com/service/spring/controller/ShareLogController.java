@@ -38,6 +38,7 @@ public class ShareLogController {
 	
 	@GetMapping("/{uuid}")
 	public ResponseEntity<String> getShareLog(@PathVariable String uuid) {
+		System.out.println(uuid);
 		String url = shareLogService.getShareLog(uuid);
 		System.out.println("getShareLog : "+url);
 		return new ResponseEntity<>(url, HttpStatus.OK);
