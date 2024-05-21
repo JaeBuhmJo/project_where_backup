@@ -33,7 +33,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
           callMapObjApiAJAX(sx,sy,ex,ey,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj,cnt); // 수도권 내 경로면 경로 제공
         }
       }else{
-        console.log("error")
+        console.log(JSON.parse(xhr.responseText).error)
       }
     }
   };
@@ -59,7 +59,7 @@ async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj,cnt) {
       let b = resultJsonData.result.lane.length
       let a = resultJsonData.result.lane[b-1].section[0].graphPos.length
 
-      console.log(resultJsonData.result.lane[b-1].section[0].graphPos[a-1])
+      // console.log(resultJsonData.result.lane[b-1].section[0].graphPos[a-1])
       drawWalkingPolyLine(resultJsonData.result.lane[b-1].section[0].graphPos[a-1].y,resultJsonData.result.lane[b-1].section[0].graphPos[a-1].x,ey,ex,cnt)
       
       //cnt++;
@@ -77,7 +77,7 @@ async function callMapObjApiAJAX(sx,sy,ex,ey,mapObj,cnt) {
 
 // 카카오맵 폴리라인 그리는 함수
 function drawKakaoPolyLine(data,cnt) {
-  console.log(data)
+  // console.log(data)
   var lineArray;
   for (var i = 0; i < data.result.lane.length; i++) {
     for (var j = 0; j < data.result.lane[i].section.length; j++) {

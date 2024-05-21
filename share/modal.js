@@ -47,7 +47,7 @@ const draw_other_end = (e) =>{
         target = e.target.parentNode
     }
     target.classList.add('choosed_subway')
-    target.disabled = true;
+    target.disabled = true;     
     let tempLat = target.children[0].getAttribute("data-lat")
     let tempLng = target.children[0].getAttribute("data-lng")
     clear_poly_line(); // 초기화
@@ -56,10 +56,18 @@ const draw_other_end = (e) =>{
     marker_for_middle.setPosition(new_marker);
     
     
+    let count_for_time = 0;
     cnt = 0;
-    for (const [key, value] of Object.entries(marker_dict)) {
-        searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
-        cnt++;
+    for (let [key, value] of Object.entries(marker_dict)) {
+        count_for_time++;
+        setTimeout(function(){
+            console.log(key)
+            searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+            cnt++;
+        
+        },(count_for_time+1) * 250)
+        
+        
     }
     cnt = 0;
 }
@@ -92,7 +100,7 @@ const cal_middle = () => {
 
     
         let data = get_subway_info(tempLat, tempLng);
-        console.log(data);
+        // console.log(data);
  
         tempLat = data.latitude
         tempLng = data.longitude
@@ -102,11 +110,18 @@ const cal_middle = () => {
         marker_for_middle.setPosition(new_marker);
         modal_map.setCenter(new_marker); // 모달 맵에 중점 설정
         marker_for_middle.setMap(modal_map); //*modal_map으로 임시 변경*
-
+        let count_for_time = 0;
         cnt = 0;
-        for (const [key, value] of Object.entries(marker_dict)) {
-            searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
-            cnt++;
+        for (let [key, value] of Object.entries(marker_dict)) {
+            count_for_time++;
+            setTimeout(function(){
+                console.log(key)
+                searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+                cnt++;
+            
+            },(count_for_time+1) * 250)
+            
+            
         }
         cnt = 0;
         
@@ -184,8 +199,8 @@ function get_subway_info(latitude, longitude) {
             let target_subways = document.getElementsByClassName("target_subway")
 
             for (let i = 0; i <3; i++){
-                console.log("================================")
-                console.log(data[i].stationName)
+                // console.log("================================")
+                // console.log(data[i].stationName)
                 target_subways[i].innerHTML = `<div data-lat=${data[i].latitude} data-lng=${data[i].longitude}>${data[i].stationName}</div>`
             }
 
