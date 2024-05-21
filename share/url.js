@@ -19,9 +19,9 @@ function getAddr_for_url(lat, lng) {
 function ajax_for_url(key){
   return new Promise((resolve,reject) => {
     $.ajax({
-      async: false,
+      async: true,
       type: "get",
-      url: "http://127.0.0.1:9000/bus?latitude=" + latitude + "&longitude=" + longitude,
+      url: "http://127.0.0.1:9000/sharelog/"+key,
 
       success: function (data) {
           resolve(data);
@@ -33,14 +33,10 @@ function ajax_for_url(key){
 
 if (window.location.href != "http://127.0.0.1:5500/index.html"){
     let info = window.location.href
-    info = info.replace("http://127.0.0.1:5500/index.html?","")
+    key = info.replace("http://127.0.0.1:5500/index.html?uuid=","")
 
 
-    let for_marker = info.split('|');
-    console.log(for_marker)
-    const start_pos_list = document.getElementById("start_pos_list");
-
-    const temp_fun = async () => {
+    const temp_fun = async (for_marker) => {
       for (infos of for_marker){
         let temp_info = infos.split("&");
 
@@ -96,7 +92,16 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
         
       }
     }
-    temp_fun()
+    const url_wait = async () =>{
+     
+      ajax_for_url(key).then(data =>{
+        console.log(data)
+        let for_marker = data.split('|');
+        const start_pos_list = document.getElementById("start_pos_list");
+        temp_fun(for_marker)
+      })
+    }
+    url_wait()
     setTimeout(function(){
       const find = document.getElementById("find_btn")
       find.click();
