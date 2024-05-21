@@ -93,28 +93,30 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
         count: 1,
       };
       let newDiv = document.createElement("div");
-    newDiv.setAttribute("class", "start_pos");
-    for_html += `
-        <span class="pos_img"></span>   
-        <span>${window.location2}</span>
+      newDiv.setAttribute("class", "start_pos");
+      for_html += `
+          <span class="pos_img"></span>   
+          <span>${window.location2}</span>
 
-        <span class="pnum_btn_group">
-        <button type="button" class="plus_button" value ="${key}">+</button>
-        <span class = "count">${marker_dict[key]["count"]}</span>
-        <button type="button" class="minus_button" value ="${key}">-</button>
-        </span>
-        
-        <button type="button" class="delete_button" value ="${key}"></button>
-        `;
+          <span class="pnum_btn_group">
+          <button type="button" class="plus_button" value ="${key}">+</button>
+          <span class = "count">${marker_dict[key]["count"]}</span>
+          <button type="button" class="minus_button" value ="${key}">-</button>
+          </span>
+          
+          <button type="button" class="delete_button" value ="${key}"></button>
+          `;
 
-    newDiv.innerHTML += for_html;
-    newDiv.querySelector(".plus_button").addEventListener("click", addFun);
-    newDiv.querySelector(".minus_button").addEventListener("click", minFun);
-    newDiv.querySelector(".delete_button").addEventListener("click", delFun);
-    start_pos_list.appendChild(newDiv);
-    // 지도에 마커 등록
-    marker.setMap(map);
-    set_pos_guide()
+      newDiv.innerHTML += for_html;
+      newDiv.querySelector(".plus_button").addEventListener("click", addFun);
+      newDiv.querySelector(".minus_button").addEventListener("click", minFun);
+      newDiv.querySelector(".delete_button").addEventListener("click", delFun);
+      start_pos_list.appendChild(newDiv);
+      // 지도에 마커 등록
+      marker.setMap(map);
+      set_pos_guide()
+      const menu_div = document.getElementById("menu");
+      menu_div.scrollTop = menu_div.scrollHeight;
     }else{
       toast_alert("올바른 위치를 클릭해주세요.", 1000);
     }

@@ -281,10 +281,10 @@ button:disabled {
 }
 
 .target_subway:hover{
-  box-shadow: 0 0 0 3px #2bde73;
-  background-color: rgb(43,222,115);
-  border: 0px;
-  color:white;
+    box-shadow: 0 0 0 3px #2bde73;
+    background-color: rgb(43,222,115);
+    border: 0px;
+    color:white;
 }
 
 
