@@ -1,12 +1,3 @@
-const myFirstPromise = new Promise((resolve, reject) => {
-  // do something asynchronous which eventually calls either:
-  //
-  //   resolve(someValue)        // fulfilled
-  // or
-  //   reject("failure reason")  // rejected
-});
-
-
 function getAddr_for_url(lat, lng) {
   return new Promise((resolve, reject) => {
     let geocoder = new kakao.maps.services.Geocoder();
@@ -95,7 +86,7 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
     setTimeout(function(){
       const find = document.getElementById("find_btn")
       find.click();
-    },500)
+    },700)
     
 
 

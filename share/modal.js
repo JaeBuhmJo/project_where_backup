@@ -146,9 +146,14 @@ const cal_middle = () => {
         marker_for_middle.setMap(modal_map); //*modal_map으로 임시 변경*
 
         cnt = 0;
-        for (const [key, value] of Object.entries(marker_dict)) {
-            searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
-            cnt++;
+        let count_for_time = 0;
+        for (let [key, value] of Object.entries(marker_dict)) {
+            count_for_time++;
+            setTimeout(function () {
+                console.log(key);
+                searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+                cnt++;
+            }, (count_for_time + 1) * 250);
         }
         cnt = 0;
 
