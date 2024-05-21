@@ -35,10 +35,19 @@ function close_modal() {
 }
 
 const draw_other_end = (e) =>{
+    
+    let target_subways = document.getElementsByClassName("target_subway")
+    for (target_subway of target_subways){
+        target_subway.disabled = false
+        target_subway.classList.remove("choosed_subway")
+    }
+
     let target = e.target
     if (e.target.tagName == "DIV"){
         target = e.target.parentNode
     }
+    target.classList.add('choosed_subway')
+    target.disabled = true;
     let tempLat = target.children[0].getAttribute("data-lat")
     let tempLng = target.children[0].getAttribute("data-lng")
     clear_poly_line(); // 초기화
@@ -55,6 +64,8 @@ const draw_other_end = (e) =>{
     cnt = 0;
 }
 let target_subways = document.getElementsByClassName("target_subway")
+target_subways[0].classList.add('choosed_subway')
+target_subways[0].disabled = true;
 for (target_subway of target_subways){
     target_subway.addEventListener('click',draw_other_end)
 }

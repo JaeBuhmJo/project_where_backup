@@ -257,20 +257,37 @@ body *{
     flex-shrink: 0;
     flex-grow: 1;
 }
+
+.choosed_subway{
+  box-shadow: 0 0 0 3px #2bde73;
+}
+
+button:disabled {
+  box-shadow: 0 0 0 3px #2bde73;
+  background-color: rgb(43,222,115);
+  border: 0px;
+  color:white;
+}
+
 .target_subway{
   width: 90%;
   flex: 0 0 80px;
   border-radius: 10px;
-  border:0px;
-  background-color: lightgray;
+  border:1px solid lightgray;
+  background-color: white;
   margin: 0 auto;
   margin-top: 10px;
   overflow-y: auto;
 }
 
 .target_subway:hover{
-    box-shadow: 0 0 0 3px #2bde73;
+  box-shadow: 0 0 0 3px #2bde73;
+  background-color: rgb(43,222,115);
+  border: 0px;
+  color:white;
 }
+
+
 
 #share_btn{
     width: 90%;
