@@ -19,7 +19,7 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
       if (JSON.parse(xhr.responseText).error == null){
         //카카오맵 폴리라인 호출
         if (JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj == undefined){
-          toast_alert("죄송합니다. \n현재 수도권 밖은 서비스 불가입니다.",1000);
+          toast_alert("죄송합니다. \n현재 수도권 밖은 서비스 불가입니다.",2000);
         }// 수도권 내 경로 확인
         else{
           // console.log(xhr.responseText); //API 정보 전체

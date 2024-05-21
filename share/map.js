@@ -28,7 +28,7 @@ function addFun(e) {
   }
 
   if (temp_count >= 16) {
-    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 1000);
+    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 2000);
     return;
   }
   marker_dict[e.target.value]["count"] += 1;
@@ -59,7 +59,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     temp_count += value["count"] * 1;
   }
   if (temp_count >= 16) {
-    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 1000);
+    toast_alert("최대 16명 까지 추가 할 수 있습니다.", 2000);
     return;
   }
 
@@ -118,7 +118,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       const menu_div = document.getElementById("menu");
       menu_div.scrollTop = menu_div.scrollHeight;
     }else{
-      toast_alert("올바른 위치를 클릭해주세요.", 1000);
+      toast_alert("올바른 위치를 클릭해주세요.", 2000);
     }
     
   }, 80);

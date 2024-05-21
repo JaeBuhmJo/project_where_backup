@@ -62,6 +62,7 @@ function call_loading(img_path){
     var loading_time = 500;
     loading_time += Object.keys(marker_dict).length*450;
     setTimeout(closeLoadingWithMask, loading_time);
+    console.log(loading_time);
     toast_alert("\n\n\n\n\n경로를 탐색중이에요!", loading_time);
 }
 
@@ -110,11 +111,7 @@ for (target_subway of target_subways) {
 // 어디서봄 (중점계산 로직)
 const cal_middle = () => {
     // 경로 탐색 로딩창
-    LoadingWithMask("./img/reload2.gif");
-    var loading_time = 300;
-    loading_time += Object.keys(marker_dict).length * 250;
-    setTimeout(closeLoadingWithMask, loading_time);
-    toast_alert("\n\n\n\n\n경로를 탐색중이에요!", loading_time);
+    call_loading("./img/reload2.gif");
 
     clear_poly_line(); // 초기화
 
@@ -165,7 +162,7 @@ const cal_middle = () => {
             value["marker"].setMap(modal_map);
         }
     } else {
-        toast_alert("하나 이상의 출발지가 추가되어야 \n도착지를 설정 할 수 있습니다.", 1000);
+        toast_alert("하나 이상의 출발지가 추가되어야 \n도착지를 설정 할 수 있습니다.", 2000);
     }
 };
 

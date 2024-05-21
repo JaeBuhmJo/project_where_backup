@@ -11,7 +11,7 @@ document.getElementById("share_btn").addEventListener("click", (e) => {
   url = url.substring(0, url.length - 1);
 
   saveShareLog(url);
-
+  toast_alert("클립보드에 공유링크가 복사되었습니다.", 2000);
 
   // db에 공유 로그 기록하기
 });
