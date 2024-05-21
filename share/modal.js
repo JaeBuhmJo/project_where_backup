@@ -68,7 +68,7 @@ function call_loading(img_path){
 
 const draw_other_end = (e) => {
     // 경로 탐색 로딩창
-    call_loading('./img/reload2.gif');
+    call_loading('./img/reload3.gif');
 
     for (target_subway of target_subways) {
         target_subway.disabled = false;
@@ -111,7 +111,7 @@ for (target_subway of target_subways) {
 // 어디서봄 (중점계산 로직)
 const cal_middle = () => {
     // 경로 탐색 로딩창
-    call_loading("./img/reload2.gif");
+    call_loading("./img/reload3.gif");
 
     clear_poly_line(); // 초기화
 

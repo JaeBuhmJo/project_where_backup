@@ -152,7 +152,7 @@ function drawKakaoPolyLine(data,cnt) {
 }
 
 function animateOpacity(outline, polyline, dash) {
-  for (var op = 0; op <= 1; op += 0.01) {
+  for (var op = 0; op <= 0.7; op += 0.01) {
     (function(op) {
       setTimeout(function() {
         outline.setOptions({ strokeOpacity: op });
