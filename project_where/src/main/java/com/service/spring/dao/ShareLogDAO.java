@@ -9,4 +9,5 @@ public interface ShareLogDAO {
 	List<Rank> getSubwayRanking();
 	List<Rank> getBusRanking();
 	int insertShareLog(ShareLog shareLog);
+	String getShareLog(String uuid);
 }

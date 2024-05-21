@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +36,21 @@ public class ShareLogController {
 		return new ResponseEntity<>(subwayRanking, HttpStatus.OK);
 	}
 	
+	@GetMapping("/{uuid}")
+	public ResponseEntity<String> getShareLog(@PathVariable String uuid) {
+		String url = shareLogService.getShareLog(uuid);
+		System.out.println("getShareLog : "+url);
+		return new ResponseEntity<>(url, HttpStatus.OK);
+	}
+	
 	@PostMapping("")
 	public ResponseEntity<String> postShareLog(ShareLog shareLog){
 		System.out.println(shareLog);
-		return shareLogService.insertShareLog(shareLog) ? new ResponseEntity<>( "로그 기록 성공", HttpStatus.OK)
-				: new ResponseEntity<>("로그 기록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		String result = shareLogService.insertShareLog(shareLog);
+		if (result.equals("false")) {
+			return new ResponseEntity<>("false", HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		}
 	}
 }

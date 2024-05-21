@@ -1,6 +1,7 @@
 package com.service.spring.service.Impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,21 @@ public class ShareLogServiceImpl implements ShareLogService {
 	}
 
 	@Override
-	public boolean insertShareLog(ShareLog shareLog) {
-		return shareLogDAO.insertShareLog(shareLog)>0;
+	public String insertShareLog(ShareLog shareLog) {
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+		System.out.println(uuid);
+		shareLog.setUuid(uuid);
+		int result = shareLogDAO.insertShareLog(shareLog);
+		if (result>0) {
+			return uuid;
+		} else {
+			return "false";
+		}
+	}
+
+	@Override
+	public String getShareLog(String uuid) {
+		return shareLogDAO.getShareLog(uuid);
 	}
 
 }

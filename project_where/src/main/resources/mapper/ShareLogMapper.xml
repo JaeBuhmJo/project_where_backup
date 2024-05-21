@@ -20,8 +20,14 @@
 	</select>
 	
 	<insert id="insertShareLog" parameterType="shareLog">
-		INSERT INTO SHARELOG (REGDATE, STATION_ID, STATION_NAME)
-		VALUES(CURDATE(), #{stationId}, #{stationName})
+		INSERT INTO SHARELOG (UUID, REGDATE, STATION_ID, STATION_NAME, URL)
+		VALUES(#{uuid}, CURDATE(), #{stationId}, #{stationName}, #{url})
 	</insert>
+	
+	<select id="getShareLog" resultType="String">
+		SELECT URL
+		FROM SHARELOG
+		WHERE UUID = #{uuid}
+	</select>
 
 </mapper>

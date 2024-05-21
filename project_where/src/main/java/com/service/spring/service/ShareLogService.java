@@ -8,5 +8,6 @@ import com.service.spring.domain.ShareLog;
 public interface ShareLogService {
 	List<Rank> getSubwayRanking();
 	List<Rank> getBusRanking();
-	boolean insertShareLog(ShareLog shareLog);
+	String insertShareLog(ShareLog shareLog);
+	String getShareLog(String uuid);
 }

@@ -32,4 +32,9 @@ public class ShareLogDAOImpl implements ShareLogDAO {
 		return sqlSession.insert(NS+"insertShareLog", shareLog);
 	}
 
+	@Override
+	public String getShareLog(String uuid) {
+		return sqlSession.selectOne(NS+"getShareLog");
+	}
+
 }
