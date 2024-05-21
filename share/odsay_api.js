@@ -1,7 +1,7 @@
 // ODsay API 키 (계정: donms@naver.com)
 // var apiKey = "PAImzpmogolDr+rikgukMDjV7ifP/FBapmXxnZw+n2o";
 // var apiKey = "";
-var apiKey = "QBPNyD9aI+YA6aQYFBsZ0YNzCNLm2Mq33ZC8hQJLCJc";
+var apiKey = "N/RkyUcODFiOYnk4dov3wtA6JYeE52si9VB9r/EG9VI";
 
 // 인원 수
 
