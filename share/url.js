@@ -16,6 +16,20 @@ function getAddr_for_url(lat, lng) {
   });
 }
 
+function ajax_for_url(key){
+  return new Promise((resolve,reject) => {
+    $.ajax({
+      async: false,
+      type: "get",
+      url: "http://127.0.0.1:9000/bus?latitude=" + latitude + "&longitude=" + longitude,
+
+      success: function (data) {
+          resolve(data);
+      },
+  });
+  })
+}
+
 
 if (window.location.href != "http://127.0.0.1:5500/index.html"){
     let info = window.location.href
