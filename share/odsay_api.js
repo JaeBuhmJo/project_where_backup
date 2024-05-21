@@ -1,5 +1,5 @@
 // ODsay API 키
-var apiKey = config.ODSAY_API_KEY3;
+var apiKey = config.ODSAY_API_KEY1;
 
 // 인원 수
 

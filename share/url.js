@@ -1,4 +1,5 @@
 function getAddr_for_url(lat, lng) {
+
   return new Promise((resolve, reject) => {
     let geocoder = new kakao.maps.services.Geocoder();
     let coord = new kakao.maps.LatLng(lat, lng);
@@ -37,6 +38,8 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
 
 
     const temp_fun = async (for_marker) => {
+      console.log("forMarker")
+      console.log(for_marker)
       for (infos of for_marker){
         let temp_info = infos.split("&");
 
@@ -96,6 +99,7 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
      
       ajax_for_url(key).then(data =>{
         console.log(data)
+        data = data.replace("http://127.0.0.1:5500/index.html?","")
         let for_marker = data.split('|');
         const start_pos_list = document.getElementById("start_pos_list");
         temp_fun(for_marker)

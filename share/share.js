@@ -9,7 +9,7 @@ document.getElementById("share_btn").addEventListener("click", (e) => {
     // url += "&count=" + value["count"] + "&";
   }
   url = url.substring(0, url.length - 1);
-
+  console.log(url)
   saveShareLog(url);
   toast_alert("클립보드에 공유링크가 복사되었습니다.", 2000);
 
