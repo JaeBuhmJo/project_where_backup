@@ -46,7 +46,55 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
         let key = temp_info[0] + "," + temp_info[1] 
 
         getAddr_for_url(temp_info[0],temp_info[1]).then(addr =>{
-          var marker = new kakao.maps.Marker({});
+          // 지도에 마커를 표시합니다
+  var imageSrc = "./img/pin_green.png";
+  var imageSize = new kakao.maps.Size(23.33, 30);
+  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+  var marker = new kakao.maps.Marker({
+    image: markerImage,
+  });
+
+  marker.setDraggable(true); 
+  kakao.maps.event.addListener(marker, 'dragstart', function() {
+    // 출발 마커의 드래그가 시작될 때 마커 이미지를 변경합니다
+    window.key_for_change = marker.getPosition().Ma+"," + marker.getPosition().La
+
+});
+
+  kakao.maps.event.addListener(marker, 'dragend', function() {
+    
+   const temp_count = marker_dict[window.key_for_change]["count"]
+    
+   delete marker_dict[window.key_for_change];
+
+   const key = marker.getPosition().Ma+"," + marker.getPosition().La
+
+   marker_dict[key] = {
+    marker: marker,
+    count: temp_count,
+  };
+  let temp_start_pos = document.getElementById(window.key_for_change)
+  temp_start_pos.setAttribute('id',key)
+
+  let temp_plus_button = temp_start_pos.querySelector(".plus_button")
+  let temp_min_button = temp_start_pos.querySelector(".minus_button")
+  let temp_delete_button = temp_start_pos.querySelector(".delete_button")
+
+  temp_plus_button.setAttribute('value',key)
+  temp_min_button.setAttribute('value',key)
+  temp_delete_button.setAttribute('value',key)
+  window.location2 = ""
+  getAddr(marker.getPosition().getLat(),marker.getPosition().getLng());
+
+  setTimeout(function(){
+    if(window.location2 != ""){
+      let loc = temp_start_pos.querySelector(".loc")
+      loc.innerHTML = window.location2
+    }
+  },200)
+
+   
+  });
 
           var latlng = new kakao.maps.LatLng(temp_info[0], temp_info[1]);
           marker.setPosition(latlng);
