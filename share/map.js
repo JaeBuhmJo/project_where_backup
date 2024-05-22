@@ -89,7 +89,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
         delete marker_dict[window.key_for_change];
 
         let key = marker.getPosition().getLat() + "," + marker.getPosition().getLng()
-
+        
         marker_dict[key] = {
             marker: marker,
             count: temp_count,
@@ -122,11 +122,13 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
 
     // 마커 위치를 클릭한 위치로 옮깁니다
     marker.setPosition(latlng);
+
     // console.log(latlng);
     // 도보 출발지 배열에 마커 위치를 추가합니다.
     start.push([latlng.getLat(), latlng.getLng()]);
 
-    const key = latlng.getLat() + "," + latlng.getLng();
+    let key = marker.getPosition().getLat() + "," + marker.getPosition().getLng();
+
     if (key in marker_dict) {
         return;
     }

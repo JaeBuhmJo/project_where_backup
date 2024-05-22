@@ -4,7 +4,7 @@ function MarkerClickHandler (){
     // 마커에 오버레이가 나타나고
     showOverlay()
     // 폴리라인이 강조된다 - 함수명 바꿔서 쓰시면 됩니다
-    setPolyLineHighlight()
+    setPolyLineHighlight(key)
 }
 function MarkerMouseOverHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
@@ -29,8 +29,13 @@ function closeOverlay() {
     removePolyLineHighlights()
 }
 
-function setPolyLineHighlight(){
-    // 폴리라인을 하이라이트 하는 함수
+function setPolyLineHighlight(key){
+    for(var idx=0; idx<=2; idx++){
+        console.log("key::"+key);
+        console.log(marker_dict[key]["route"][idx]);
+        console.log("여기다:::"+marker_dict[key]["route"][idx][0][0].Ic[0]);
+        document.get
+    }
     console.log("setPolyLineHighlight called")
 }
 
