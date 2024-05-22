@@ -37,6 +37,7 @@ function close_modal() {
         kakao.maps.event.removeListener(value["marker"], 'mouseover', MarkerMouseOverHandler);
         kakao.maps.event.removeListener(value["marker"], 'mouseout', MarkerMouseOutHandler);
     }
+    closeOverlay()
 }
 
 // 로딩 관련 함수
