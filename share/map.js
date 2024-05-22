@@ -1,6 +1,7 @@
 // 마커를 담을 배열입니다
 let marker_dict = {};
 const addr = "";
+let key_for_change = ""
 
 
 var cnt = 0;
@@ -52,6 +53,8 @@ function delFun(e) {
   set_pos_guide();
 }
 
+
+
 // 지도 클릭 시 마커 생성
 kakao.maps.event.addListener(map, "click", function (mouseEvent) {
   let temp_count = 0;
@@ -64,6 +67,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
   }
 
   // 지도에 마커를 표시합니다
+<<<<<<< Updated upstream
   var imageSrc = "./img/pin_green.png";
   var imageSize = new kakao.maps.Size(23.33, 30);
   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -71,6 +75,50 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     image: markerImage,
   });
 
+=======
+  var marker = new kakao.maps.Marker({});
+  marker.setDraggable(true); 
+  kakao.maps.event.addListener(marker, 'dragstart', function() {
+    // 출발 마커의 드래그가 시작될 때 마커 이미지를 변경합니다
+    window.key_for_change = marker.getPosition().Ma+"," + marker.getPosition().La
+
+});
+
+  kakao.maps.event.addListener(marker, 'dragend', function() {
+    
+   const temp_count = marker_dict[window.key_for_change]["count"]
+    
+   delete marker_dict[window.key_for_change];
+
+   const key = marker.getPosition().Ma+"," + marker.getPosition().La
+
+   marker_dict[key] = {
+    marker: marker,
+    count: temp_count,
+  };
+  let temp_start_pos = document.getElementById(window.key_for_change)
+  temp_start_pos.setAttribute('id',key)
+
+  let temp_plus_button = temp_start_pos.querySelector(".plus_button")
+  let temp_min_button = temp_start_pos.querySelector(".minus_button")
+  let temp_delete_button = temp_start_pos.querySelector(".delete_button")
+
+  temp_plus_button.setAttribute('value',key)
+  temp_min_button.setAttribute('value',key)
+  temp_delete_button.setAttribute('value',key)
+  window.location2 = ""
+  getAddr(marker.getPosition().getLat(),marker.getPosition().getLng());
+
+  setTimeout(function(){
+    if(window.location2 != ""){
+      let loc = temp_start_pos.querySelector(".loc")
+      loc.innerHTML = window.location2
+    }
+  },200)
+
+   
+  });
+>>>>>>> Stashed changes
 
   // 클릭한 위도, 경도 정보를 가져옵니다
   var latlng = mouseEvent.latLng;
@@ -100,9 +148,10 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       };
       let newDiv = document.createElement("div");
       newDiv.setAttribute("class", "start_pos");
+      newDiv.setAttribute('id',key)
       for_html += `
           <span class="pos_img"></span>   
-          <span>${window.location2}</span>
+          <span class="loc">${window.location2}</span>
 
           <span class="pnum_btn_group">
           <button type="button" class="plus_button" value ="${key}">+</button>
@@ -141,6 +190,7 @@ function getAddr(lat, lng) {
   let callback = function (result, status) {
     if (status === kakao.maps.services.Status.OK) {
       window.location2 = result[0].address.address_name;
+
     }
   };
   geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);

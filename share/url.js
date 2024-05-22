@@ -61,9 +61,10 @@ if (window.location.href != "http://127.0.0.1:5500/index.html"){
             };
             let newDiv = document.createElement("div");
             newDiv.setAttribute("class", "start_pos");
+            newDiv.setAttribute('id',key)
             for_html += `
                 <span class="pos_img"></span>   
-                <span>${addr}</span>
+                <span class="loc">${addr}</span>
       
                 <span class="pnum_btn_group">
                 <button type="button" class="plus_button" value ="${key}">+</button>
