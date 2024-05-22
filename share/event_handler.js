@@ -26,6 +26,10 @@ let overlay = new kakao.maps.CustomOverlay({
 function showOverlay(key){
     let info = marker_dict[key]["info"]
     console.log(info)
+
+    const json = JSON.stringify(marker_dict[key]["subPath"]);
+    console.log("subPath;"+json);
+
     console.log("showOverlay called")
 
     let totalTime = getTime(info.totalTime)
@@ -35,13 +39,12 @@ function showOverlay(key){
     '    <div class="info">' + 
     '        <div class="title">' + 
     '            이동 정보 요약' + 
-    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
     '        </div>' + 
-    '        <div class="body">' + 
+    '        <div class="   body">' + 
     '            <div class="desc">' + 
-    '                <div class="ellipsis">'+info.firstStartStation + ' -> '+info.lastEndStation+'</div>' + 
+    '                <div class="ellipsis">'+info.firstStartStation + ' → '+info.lastEndStation+'</div><br>' + 
     '                <div class="jibun ellipsis">총 요금 : '+info.payment+'원</div>' + 
-    '                <div>총 이동시간 '+totalTime+'</div>' + 
+    '                <div>총 이동시간 : '+totalTime+'</div>' + 
     '            </div>' + 
     '        </div>' + 
     '    </div>' +    

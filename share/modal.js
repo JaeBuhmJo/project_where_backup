@@ -143,7 +143,7 @@ const cal_middle = () => {
         temp_cnt += value["count"] * 1;
     }
 
-    if (temp_cnt > 0) {
+    if (temp_cnt > 1) {
         tempLat = tempLat / temp_cnt;
         tempLng = tempLng / temp_cnt;
 
@@ -182,7 +182,7 @@ const cal_middle = () => {
             kakao.maps.event.addListener(value["marker"], 'mouseout', MarkerMouseOutHandler);
         }
     } else {
-        toast_alert("하나 이상의 출발지가 추가되어야 \n도착지를 설정 할 수 있습니다.", 2000);
+        toast_alert("둘 이상의 출발지가 추가되어야 \n도착지를 설정 할 수 있습니다.", 2000);
     }
 };
 
