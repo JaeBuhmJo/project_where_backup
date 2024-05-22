@@ -106,8 +106,6 @@ const draw_other_end = (e) => {
     cnt = 0;
 };
 let target_subways = document.getElementsByClassName("target_subway");
-target_subways[0].classList.add("choosed_subway");
-target_subways[0].disabled = true;
 for (target_subway of target_subways) {
     target_subway.addEventListener("click", draw_other_end);
 }
@@ -118,6 +116,14 @@ const cal_middle = () => {
     call_loading("./img/reload3.gif");
 
     clear_poly_line(); // 초기화
+
+    for (target_subway of target_subways) {
+        target_subway.disabled = false;
+        target_subway.classList.remove("choosed_subway");
+    }
+
+    target_subways[0].classList.add("choosed_subway");
+    target_subways[0].disabled = true;
 
     let tempLng = 0;
     let tempLat = 0;
