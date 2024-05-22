@@ -109,9 +109,9 @@ if (window.location.href != "http://127.0.0.1:5500/index.html") {
                 <span class="loc">${addr}</span>
       
                 <span class="pnum_btn_group">
-                <button type="button" class="plus_button" value ="${key}">+</button>
-                <span class = "count">${marker_dict[key]["count"]}</span>
                 <button type="button" class="minus_button" value ="${key}">-</button>
+                <span class = "count">${marker_dict[key]["count"]}</span>
+                <button type="button" class="plus_button" value ="${key}">+</button>
                 </span>
                 
                 <button type="button" class="delete_button" value ="${key}"></button>
