@@ -4,6 +4,8 @@ let outlines = [];
 let dashes = [];
 let walkingPolyLines = [];
 
+let marker_click_on = false;
+
 // 지도를 생성합니다
 var modal_mapContainer = document.getElementById("modal_map"), // 지도를 표시할 div
     modal_mapOption = {
