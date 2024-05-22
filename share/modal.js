@@ -241,7 +241,7 @@ function get_subway_info(latitude, longitude) {
                 console.log(data[i].stationName);
                 target_subways[
                     i
-                ].innerHTML = `<div data-lat=${data[i].latitude} data-lng=${data[i].longitude} data-id=${data[i].stationId}>${data[i].stationName}</div>`;
+                ].innerHTML = `<div class=target_station data-lat=${data[i].latitude} data-lng=${data[i].longitude} data-id=${data[i].stationId}>${data[i].stationName}</div>`;
             }
 
             subway_info.innerHTML = data[0];

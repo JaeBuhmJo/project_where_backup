@@ -166,9 +166,21 @@ body *{
   font-family : "카페24 써라운드";
   font-size: large;
   font-weight: bold;
-  padding-left: 50px;
   border-radius: 5px;
   position: relative;
+  display: flex;
+  margin-left: 23px;
+ }
+
+.loc{
+  margin-left: 50px;
+  display:inline-block;
+  width:250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .pnum_btn_group{
@@ -178,8 +190,8 @@ body *{
 
 .pos_img{
   position: absolute;
-  top:18.5px;
-  left:15px;
+  top: 18px;
+  left: 15px;
   width: 25px;
   height: 25px;
   background: url('./img/start_circle.svg');
@@ -326,4 +338,10 @@ button:disabled {
   animation-name: fadeInDown;
   animation-duration: 1s;
   animation-fill-mode: both;
+}
+
+.target_station{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

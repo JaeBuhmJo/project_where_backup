@@ -149,7 +149,6 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
             for_html += `
           <span class="pos_img"></span>   
           <span class="loc">${window.location2}</span>
-
           <span class="pnum_btn_group">
           <button type="button" class="minus_button" value ="${key}">-</button>
           <span class = "count">${marker_dict[key]["count"]}</span>
