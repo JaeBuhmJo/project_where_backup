@@ -1,7 +1,5 @@
 function MarkerClickHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
-    console.log("클릭", key)
-    console.log(marker_dict[key])
     // 마커에 오버레이가 나타나고
     closeOverlay()
     showOverlay(key)
@@ -10,15 +8,11 @@ function MarkerClickHandler (){
 }
 function MarkerMouseOverHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
-    console.log("마우스 들어옴", key)
-    console.log(marker_dict[key])
     // 마커 하이라이트
     setMarkerHighlight()
 }
 function MarkerMouseOutHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
-    console.log("마우스 나감", key)
-    console.log(marker_dict[key])
     // 마커 하이라이트 해제
     removeMarkerHighlight()
 }
@@ -72,29 +66,32 @@ function getTime(time){
 }
 
 function closeOverlay() {
-    console.log("closeOverlay called")
     overlay.setMap(null);
-    // 오버레이가 닫힐 떄는 폴리라인도 꺼진다
     removePolyLineHighlights()
 }
 
-function setPolyLineHighlight(key){
-    console.log(marker_dict[key]);
-    for(var idx=0; idx<=3; idx++){
-        // console.log("key::"+key);
-        // console.log(marker_dict[key]["route"][idx]);
-        // console.log("여기다:::"+marker_dict[key]["route"][idx][0][0].Ic[0]);
-        
-        for(const a of marker_dict[key]["route"][idx]){
-            a.setOptions({ strokeColor: '#000000' });
+function setPolyLineHighlight(clicked_man){
+    for (const [key, value] of Object.entries(marker_dict)) {
+        if (clicked_man != key){
+            for(const a of marker_dict[key]["route"][1]){
+                a.setOptions({ strokeColor: '#777777' });
+            }
+            for(const a of marker_dict[key]["route"][3]){
+                a.setOptions({  strokeColor: '#777777'});
+            }
         }
     }
-    console.log("setPolyLineHighlight called")
 }
 
 function removePolyLineHighlights(){
-    // 폴리라인을 이전 상태로 되돌리는 함수
-    console.log("removePolyLineHighlights called")
+    for (const [key, value] of Object.entries(marker_dict)) {
+        for(const a of marker_dict[key]["route"][1]){
+            a.setOptions({ strokeColor: marker_dict[key]["color"] });
+        }
+        for(const a of marker_dict[key]["route"][3]){
+            a.setOptions({ strokeColor: marker_dict[key]["color"] });
+        }
+    }
 }
 
 function setMarkerHighlight(){

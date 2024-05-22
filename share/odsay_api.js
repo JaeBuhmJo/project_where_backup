@@ -136,6 +136,7 @@ function drawKakaoPolyLine(data,cnt, sy, sx) {
   marker_dict[key]["route"].push(temp_outlines);
   marker_dict[key]["route"].push(temp_polylines);
   marker_dict[key]["route"].push(temp_dashes);
+  marker_dict[key]["color"] = palette[cnt];
 }
 
 function animateOpacity(outline, polyline, dash) {
