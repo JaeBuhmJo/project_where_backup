@@ -339,3 +339,18 @@ button:disabled {
   animation-duration: 1s;
   animation-fill-mode: both;
 }
+
+.target_station{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#ranking_list{
+  display: none;
+}
+
+.ranking_slider_in{
+  display: block;
+  position: absolute;
+  z-index: 999;
+}
