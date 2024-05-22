@@ -134,7 +134,6 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     }
 
 
-
     // 선택창(start_pos_list) 등록
     const start_pos_list = document.getElementById("start_pos_list");
     getAddr(latlng.getLat(), latlng.getLng());
@@ -144,6 +143,7 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
             marker_dict[key] = {
                 marker: marker,
                 count: 1,
+                route: [],
             };
             let newDiv = document.createElement("div");
             newDiv.setAttribute("class", "start_pos");

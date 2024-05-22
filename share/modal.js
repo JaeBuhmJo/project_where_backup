@@ -98,6 +98,7 @@ const draw_other_end = (e) => {
     let count_for_time = 0;
     cnt = 0;
     for (let [key, value] of Object.entries(marker_dict)) {
+        marker_dict[key]["route"] = [];
         count_for_time++;
         setTimeout(function () {
             console.log(key);
@@ -115,6 +116,7 @@ for (target_subway of target_subways) {
 // 어디서봄 (중점계산 로직)
 const cal_middle = () => {
     // 경로 탐색 로딩창
+    
     call_loading("./img/reload3.gif");
 
     clear_poly_line(); // 초기화
@@ -133,6 +135,7 @@ const cal_middle = () => {
     let temp_cnt = 0;
 
     for (const [key, value] of Object.entries(marker_dict)) {
+        marker_dict[key]["route"] = [];
         value["marker"].setDraggable(false); 
         tempLng += value["marker"].getPosition().getLng() * (value["count"] * 1);
         tempLat += value["marker"].getPosition().getLat() * (value["count"] * 1);

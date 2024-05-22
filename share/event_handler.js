@@ -30,11 +30,15 @@ function closeOverlay() {
 }
 
 function setPolyLineHighlight(key){
-    for(var idx=0; idx<=2; idx++){
-        console.log("key::"+key);
-        console.log(marker_dict[key]["route"][idx]);
-        console.log("여기다:::"+marker_dict[key]["route"][idx][0][0].Ic[0]);
-        document.get
+    console.log(marker_dict[key]);
+    for(var idx=0; idx<=3; idx++){
+        // console.log("key::"+key);
+        // console.log(marker_dict[key]["route"][idx]);
+        // console.log("여기다:::"+marker_dict[key]["route"][idx][0][0].Ic[0]);
+        
+        for(const a of marker_dict[key]["route"][idx]){
+            a.setOptions({ strokeColor: '#000000' });
+        }
     }
     console.log("setPolyLineHighlight called")
 }

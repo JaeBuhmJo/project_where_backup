@@ -131,7 +131,9 @@ function drawKakaoPolyLine(data,cnt, sy, sx) {
   const key = sy + "," + sx;
   // console.log("해당 키 존재 여부 : "+marker_dict[key]);
   console.log("key::"+key);
-  marker_dict[key]["route"] = [outlines, polylines, dashes];
+  marker_dict[key]["route"].push(temp_outlines);
+  marker_dict[key]["route"].push(temp_polylines);
+  marker_dict[key]["route"].push(temp_dashes);
 }
 
 function animateOpacity(outline, polyline, dash) {
@@ -184,6 +186,8 @@ function drawWalkingPolyLine(data,len2,len1,sy,sx,ey,ex,cnt) {
   walkingPolyLine_1.setMap(modal_map);
   walkingPolyLine_2.setMap(modal_map);
   walkingPolyLines.push(temp_walkingPolyLines);
+  const key = sy + "," + sx;
+  marker_dict[key]["route"].push(temp_walkingPolyLines);
 }
 
 // 인원별 색상
