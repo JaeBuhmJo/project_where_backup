@@ -31,6 +31,9 @@ function close_modal() {
     for (const [key, value] of Object.entries(marker_dict)) {
         value["marker"].setMap(map);
         value["marker"].setDraggable(true); 
+        kakao.maps.event.removeListener(value["marker"], 'click', MarkerClickHandler);
+        kakao.maps.event.removeListener(value["marker"], 'mouseover', MarkerMouseOverHandler);
+        kakao.maps.event.removeListener(value["marker"], 'mouseout', MarkerMouseOutHandler);
     }
 }
 
@@ -162,6 +165,9 @@ const cal_middle = () => {
 
         for (const [key, value] of Object.entries(marker_dict)) {
             value["marker"].setMap(modal_map);
+            kakao.maps.event.addListener(value["marker"], 'click', MarkerClickHandler);
+            kakao.maps.event.addListener(value["marker"], 'mouseover', MarkerMouseOverHandler);
+            kakao.maps.event.addListener(value["marker"], 'mouseout', MarkerMouseOutHandler);
         }
     } else {
         toast_alert("하나 이상의 출발지가 추가되어야 \n도착지를 설정 할 수 있습니다.", 2000);

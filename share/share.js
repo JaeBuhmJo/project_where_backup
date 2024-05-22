@@ -9,7 +9,6 @@ document.getElementById("share_btn").addEventListener("click", (e) => {
     // url += "&count=" + value["count"] + "&";
   }
   url = url.substring(0, url.length - 1);
-  console.log(url)
   saveShareLog(url);
   toast_alert("클립보드에 공유링크가 복사되었습니다.", 2000);
 
@@ -44,9 +43,7 @@ function saveShareLog(url) {
         console.log("로그 기록 실패");
       } else {
         console.log("로그 기록 성공");
-        console.log("uuid" + response)
         let shortenedUrl ="http://127.0.0.1:5500/index.html?uuid="+ response;
-        console.log("단축url : "+shortenedUrl)
         setUrltoClipboard(shortenedUrl);
       }
     },
