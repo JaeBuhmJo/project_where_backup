@@ -28,6 +28,8 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
           start_y = JSON.parse(xhr.responseText)["result"]["path"][0].subPath[1].startY; // 첫번째 정거장 위도
           //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
           //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
+          marker_dict[sy+","+sx]["info"] = JSON.parse(xhr.responseText)["result"]["path"][0].info
+          console.log("여기에 인포가 들어와야함"+JSON.parse(xhr.responseText)["result"]["path"][0].info)
           callMapObjApiAJAX(sx,sy,ex,ey,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj,cnt); // 수도권 내 경로면 경로 제공
         }
       }else{
