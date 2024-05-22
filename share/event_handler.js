@@ -108,12 +108,18 @@ function removeMarkerHighlight(){
 }
 
 // 경로, 마커가 아닌 모달맵을 클릭하면
-document.getElementById("modal_map").addEventListener("click", (e) =>{
-    console.log(e.target.tagName)
-    if (e.target.tagName == "path" || e.target.tagName == "IMG"){ // 경로나 마커 클릭은 무시한다
-        return``
+document.getElementById("modal_map").addEventListener("pointerdown", (e) => {
+let isDragging = false;
+
+e.target.addEventListener("pointermove", () => {
+    isDragging = true;
+});
+
+e.target.addEventListener("pointerup", () => {
+    if (!isDragging) {
+    // 드래그가 발생하지 않았다면 클릭 이벤트 처리
+    closeOverlay()
     }
-        // 마커의 오버레이가 지워지고, 폴리라인도 따라서 지워진다
-        closeOverlay()
-    }
-)
+});
+});
+  
