@@ -158,8 +158,8 @@ const cal_middle = () => {
         for (let [key, value] of Object.entries(marker_dict)) {
             count_for_time++;
             setTimeout(function () {
-                console.log(key);
-                searchPubTransPathAJAX(value["marker"].getPosition().getLng(), value["marker"].getPosition().getLat(), tempLng, tempLat, cnt);
+                const pos = key.split(',');
+                searchPubTransPathAJAX(pos[1], pos[0], tempLng, tempLat, cnt);
                 cnt++;
             }, (count_for_time + 1) * 250);
         }
@@ -184,17 +184,25 @@ let find_btn = document.getElementById("find_btn");
 find_btn.addEventListener("click", cal_middle);
 
 const clear_poly_line = () => {
-    for (const pp of polylines) {
-        pp.setMap(null);
+    for (const pps of polylines) {
+        for(const pp of pps){
+            pp.setMap(null);
+        }
     }
-    for (const oo of outlines) {
-        oo.setMap(null);
+    for (const oos of outlines) {
+        for(const oo of oos){
+            oo.setMap(null);
+        }
     }
-    for (const dd of dashes) {
-        dd.setMap(null);
+    for (const dds of dashes) {
+        for(const dd of dds){
+            dd.setMap(null);
+        }
     }
-    for (const ww of walkingPolyLines) {
-        ww.setMap(null);
+    for (const wws of walkingPolyLines) {
+        for(const ww of wws){
+            ww.setMap(null);
+        }
     }
 
     polylines = [];

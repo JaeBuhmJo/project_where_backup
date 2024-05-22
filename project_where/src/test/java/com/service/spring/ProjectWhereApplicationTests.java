@@ -86,7 +86,7 @@ class ProjectWhereApplicationTests {
 		System.out.println("버스 로그 : " + session.selectList("ShareLogMapper.getBusRanking"));
 		System.out.println("지하철 로그 : "+session.selectList("ShareLogMapper.getSubwayRanking"));
 		
-		System.out.println("로그 기록하기 : 기록한 수 : "+session.insert("ShareLogMapper.insertShareLog", new ShareLog(100000004, "종로2가.삼일교", 201, "시청")));
+//		System.out.println("로그 기록하기 : 기록한 수 : "+session.insert("ShareLogMapper.insertShareLog", new ShareLog(100000004, "종로2가.삼일교", 201, "시청")));
 
 		System.out.println("버스 로그 : " + session.selectList("ShareLogMapper.getBusRanking"));
 		System.out.println("지하철 로그 : " + session.selectList("ShareLogMapper.getSubwayRanking"));

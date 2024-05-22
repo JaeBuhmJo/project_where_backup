@@ -17,6 +17,11 @@ function getRanking() {
     success: function (data) {
       $("#show-ranking").html("1." + data[0].name).addClass("fadeInDown");
       showRanking(data);
+
+      data.forEach(function(item) {
+        $('#ranking_list ol').append('<li>' + item.name + '</li>');
+      });
+      
     },
   });
 }
