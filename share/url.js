@@ -111,6 +111,7 @@ if (window.location.href != "http://127.0.0.1:5500/index.html") {
 
         var latlng = new kakao.maps.LatLng(temp_info[0], temp_info[1]);
         marker.setPosition(latlng);
+        key =  marker.getPosition().getLat() + "," + marker.getPosition().getLng()
 
         let for_html = "";
         setTimeout(function () {
