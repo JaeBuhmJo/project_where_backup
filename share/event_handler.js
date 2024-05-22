@@ -9,12 +9,12 @@ function MarkerClickHandler (){
 function MarkerMouseOverHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
     // 마커 하이라이트
-    setMarkerHighlight()
+    setMarkerHighlight(key)
 }
 function MarkerMouseOutHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
     // 마커 하이라이트 해제
-    removeMarkerHighlight()
+    removeMarkerHighlight(key)
 }
 
 let overlay = new kakao.maps.CustomOverlay({
@@ -84,6 +84,14 @@ function setPolyLineHighlight(clicked_man){
             }
         }
     }
+
+
+    for(let idx = 0; idx<=3; idx++){
+        for(const a of marker_dict[clicked_man]["route"][idx]){
+            a.setMap(null);
+            a.setMap(modal_map);
+        }
+    }
 }
 
 function removePolyLineHighlights(){
@@ -97,13 +105,19 @@ function removePolyLineHighlights(){
     }
 }
 
-function setMarkerHighlight(){
+function setMarkerHighlight(key){
     // 마커의 하이라이트를 설정하는 함수
+    var imageSize = new kakao.maps.Size(28, 36);
+    var markerImage = new kakao.maps.MarkerImage("./img/pin_mouseover.png", imageSize);
+    marker_dict[key]['marker'].setImage(markerImage);
     console.log("마커 하이라이트 설정")
 }
 
-function removeMarkerHighlight(){
+function removeMarkerHighlight(key){
     // 마커의 하이라이트를 제거하는 함수
+    var imageSize = new kakao.maps.Size(23.33, 30);
+    var markerImage = new kakao.maps.MarkerImage("./img/pin_green.png", imageSize);
+    marker_dict[key]['marker'].setImage(markerImage);
     console.log("마커 하이라이트 해제")
 }
 
