@@ -13,8 +13,8 @@ var modal_mapContainer = document.getElementById("modal_map"), // 지도를 표�
 var modal_map = new kakao.maps.Map(modal_mapContainer, modal_mapOption);
 
 // 중점 pin 이미지
-var imageSrc = "./img/pin.png";
-var imageSize = new kakao.maps.Size(30, 30);
+var imageSrc = "./img/pin_red.png";
+var imageSize = new kakao.maps.Size(23.33, 30);
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 var marker_for_middle = new kakao.maps.Marker({
     image: markerImage,

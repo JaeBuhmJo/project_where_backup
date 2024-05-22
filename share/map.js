@@ -64,7 +64,13 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
   }
 
   // 지도에 마커를 표시합니다
-  var marker = new kakao.maps.Marker({});
+  var imageSrc = "./img/pin_green.png";
+  var imageSize = new kakao.maps.Size(23.33, 30);
+  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+  var marker = new kakao.maps.Marker({
+    image: markerImage,
+  });
+
 
   // 클릭한 위도, 경도 정보를 가져옵니다
   var latlng = mouseEvent.latLng;
