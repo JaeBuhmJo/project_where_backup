@@ -29,7 +29,9 @@ async function searchPubTransPathAJAX(sx, sy, ex, ey, cnt) {
           //console.log("약속인원 수 : "+Object.keys(marker_dict).length);
           //console.log(JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj);
           marker_dict[sy+","+sx]["info"] = JSON.parse(xhr.responseText)["result"]["path"][0].info
-          console.log("여기에 인포가 들어와야함"+JSON.parse(xhr.responseText)["result"]["path"][0].info)
+          marker_dict[sy+","+sx]["subPath"] = JSON.parse(xhr.responseText)["result"]["path"][0].subPath
+          // console.log("여기에 인포가 들어와야함"+JSON.parse(xhr.responseText)["result"]["path"][0].subPath)
+          // console.log("여기에 인포가 들어와야함"+JSON.parse(xhr.responseText)["result"]["path"][0].info)
           callMapObjApiAJAX(sx,sy,ex,ey,JSON.parse(xhr.responseText)["result"]["path"][0].info.mapObj,cnt); // 수도권 내 경로면 경로 제공
         }
       }else{
