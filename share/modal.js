@@ -30,6 +30,7 @@ function close_modal() {
 
     for (const [key, value] of Object.entries(marker_dict)) {
         value["marker"].setMap(map);
+        value["marker"].setDraggable(true); 
     }
 }
 
@@ -121,6 +122,7 @@ const cal_middle = () => {
     let temp_cnt = 0;
 
     for (const [key, value] of Object.entries(marker_dict)) {
+        value["marker"].setDraggable(false); 
         tempLng += value["marker"].getPosition().getLng() * (value["count"] * 1);
         tempLat += value["marker"].getPosition().getLat() * (value["count"] * 1);
         temp_cnt += value["count"] * 1;

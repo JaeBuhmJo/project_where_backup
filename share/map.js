@@ -67,7 +67,6 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
   }
 
   // 지도에 마커를 표시합니다
-<<<<<<< Updated upstream
   var imageSrc = "./img/pin_green.png";
   var imageSize = new kakao.maps.Size(23.33, 30);
   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
@@ -75,8 +74,6 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
     image: markerImage,
   });
 
-=======
-  var marker = new kakao.maps.Marker({});
   marker.setDraggable(true); 
   kakao.maps.event.addListener(marker, 'dragstart', function() {
     // 출발 마커의 드래그가 시작될 때 마커 이미지를 변경합니다
@@ -118,7 +115,6 @@ kakao.maps.event.addListener(map, "click", function (mouseEvent) {
 
    
   });
->>>>>>> Stashed changes
 
   // 클릭한 위도, 경도 정보를 가져옵니다
   var latlng = mouseEvent.latLng;
