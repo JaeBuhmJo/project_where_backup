@@ -58,38 +58,56 @@ if (window.location.href != "http://127.0.0.1:5500/index.html") {
           console.log(window.key_for_change)
         });
 
-        kakao.maps.event.addListener(marker, "dragend", function () {
-          setTimeout(function () {}, 70);
-          const temp_count = marker_dict[window.key_for_change]["count"];
+        kakao.maps.event.addListener(marker, 'dragend', function () {
 
-          delete marker_dict[window.key_for_change];
-
-          const key = marker.getPosition().getLat() + "," + marker.getPosition().getLng()
-
-          marker_dict[key] = {
-            marker: marker,
-            count: temp_count,
-          };
-          let temp_start_pos = document.getElementById(window.key_for_change);
-          temp_start_pos.setAttribute("id", key);
-
-          let temp_plus_button = temp_start_pos.querySelector(".plus_button");
-          let temp_min_button = temp_start_pos.querySelector(".minus_button");
-          let temp_delete_button = temp_start_pos.querySelector(".delete_button");
-
-          temp_plus_button.setAttribute("value", key);
-          temp_min_button.setAttribute("value", key);
-          temp_delete_button.setAttribute("value", key);
-          window.location2 = "";
+          let temp_count = marker_dict[window.key_for_change]["count"]
+  
+          let key = marker.getPosition().getLat() + "," + marker.getPosition().getLng()
+  
+          window.location2 = ""
           getAddr(marker.getPosition().getLat(), marker.getPosition().getLng());
-
+  
           setTimeout(function () {
-            if (window.location2 != "") {
-              let loc = temp_start_pos.querySelector(".loc");
-              loc.innerHTML = window.location2;
-            }
-          }, 200);
-        });
+              if (window.location2 != "") {
+                  let temp_start_pos = document.getElementById(window.key_for_change)
+                  let loc = temp_start_pos.querySelector(".loc")
+                  loc.innerHTML = window.location2
+                  delete marker_dict[window.key_for_change];
+  
+                  marker_dict[key] = {
+                      marker: marker,
+                      count: temp_count,
+                  };
+  
+                  temp_start_pos.setAttribute('id', key)
+          
+                  let temp_plus_button = temp_start_pos.querySelector(".plus_button")
+                  let temp_min_button = temp_start_pos.querySelector(".minus_button")
+                  let temp_delete_button = temp_start_pos.querySelector(".delete_button")
+          
+                  temp_plus_button.setAttribute('value', key)
+                  temp_min_button.setAttribute('value', key)
+                  temp_delete_button.setAttribute('value', key)
+          
+              }else{
+                  temp = window.key_for_change.split(",")
+                  temp_lat_for_back = temp[0]
+                  temp_lng_for_back = temp[1]
+  
+                  let temo_lat = new kakao.maps.LatLng(temp_lat_for_back, temp_lng_for_back)
+  
+                  // 마커 위치를 클릭한 위치로 옮깁니다
+                  marker.setPosition(temo_lat);
+  
+                  toast_alert("올바른 위치를 클릭해주세요.", 600);
+  
+                  return
+  
+              }
+          }, 200)
+          
+      });
+  
 
         var latlng = new kakao.maps.LatLng(temp_info[0], temp_info[1]);
         marker.setPosition(latlng);
