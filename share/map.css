@@ -111,7 +111,7 @@ body *{
   z-index: 2;
   font-size: 12px;
   border-radius: 10px;
-  border: lightgray 1px solid;
+  border: #EEF7F0 1px solid;
 }
 
 #menu {
@@ -136,10 +136,10 @@ body *{
 #default_start_guide{
   display: block;
   margin: 30px 0px;
-  color: rgba(0, 0, 0, 0.5);
+  color: #777777;
   font-size: 2.5ch;
   padding: 40px;
-  border: 3px dashed lightgray;
+  border: 3px dashed #777777;
   border-radius: 10px;
 }
 
@@ -162,7 +162,7 @@ body *{
   margin: 10px;
   width: 90%;
   line-height: 60px;
-  background-color: #eeeeee;
+  background-color: #EEF7F0;
   font-family : "카페24 써라운드";
   font-size: large;
   font-weight: bold;
@@ -189,6 +189,7 @@ body *{
 .plus_button, .minus_button{
   border: 0px;
   background-color: transparent;
+  color: #2bde73;
 }
 
 .delete_button{
@@ -221,12 +222,13 @@ body *{
   background-color: #2bde73;
 }
 #init_btn {
-  color: white;
-  background-color: #cecece;
+  color: #777777;
+  background-color: #EEF7F0;
 }
 
 #transport_list{
     position: absolute;
+    color: #777777;
     background-color: rgb(255,255,255,0.8);
     border-radius: 10px;
     z-index: 12;
@@ -273,7 +275,7 @@ button:disabled {
   width: 90%;
   flex: 0 0 80px;
   border-radius: 10px;
-  border:1px solid lightgray;
+  border:1px solid #EEF7F0;
   background-color: white;
   margin: 0 auto;
   margin-top: 10px;
