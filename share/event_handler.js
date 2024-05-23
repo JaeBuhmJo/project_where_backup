@@ -1,5 +1,10 @@
 function MarkerClickHandler (){
     let key = this.getPosition().getLat() +"," + this.getPosition().getLng()
+    
+    if (marker_dict[key]["route"]==""){
+        toast_alert("700m 이내 경로는 \n길찾기가 제공되지 않습니다.", 2000);
+    }
+    
     // 마커에 오버레이가 나타나고
     closeOverlay()
     showOverlay(key)
