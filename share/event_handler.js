@@ -26,6 +26,9 @@ let overlay = new kakao.maps.CustomOverlay({
 function showOverlay(key){
     let info = marker_dict[key]["info"]
     console.log(info)
+    if (info==undefined){
+        return
+    }
 
     const json = JSON.stringify(marker_dict[key]["subPath"]);
     console.log("subPath;"+json);
@@ -75,6 +78,10 @@ function closeOverlay() {
 
 function setPolyLineHighlight(clicked_man){
     for (const [key, value] of Object.entries(marker_dict)) {
+        if (marker_dict[key]["route"]==""){
+            console.log("루트가 잡히지 않은 사람은 스킵되었음:setPolyLineHighlight")
+            continue
+        }
         if (clicked_man != key){
             for(const a of marker_dict[key]["route"][1]){
                 a.setOptions({ strokeColor: '#777777' });
@@ -87,6 +94,11 @@ function setPolyLineHighlight(clicked_man){
 
 
     for(let idx = 0; idx<=3; idx++){
+        if (marker_dict[clicked_man]["route"]==""){
+            console.log("루트가 잡히지 않은 사람은 스킵되었음:그냥 포문")
+            closeOverlay()
+            continue
+        }
         for(const a of marker_dict[clicked_man]["route"][idx]){
             a.setMap(null);
             a.setMap(modal_map);
@@ -96,6 +108,11 @@ function setPolyLineHighlight(clicked_man){
 
 function removePolyLineHighlights(){
     for (const [key, value] of Object.entries(marker_dict)) {
+        console.log("에러 추정 위치" +marker_dict[key]["route"])
+        if (marker_dict[key]["route"]==""){
+            console.log("루트가 잡히지 않은 사람은 스킵되었음:removePolyLineHighlights")
+            continue
+        }
         for(const a of marker_dict[key]["route"][1]){
             a.setOptions({ strokeColor: marker_dict[key]["color"] });
         }
